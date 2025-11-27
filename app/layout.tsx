@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Sora, Montserrat } from "next/font/google";
 import "./globals.css";
+import Hero from "./page";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const sora = Sora({
+  subsets: ['latin'],
+  variable: '--font-sora',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800'],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800'],
 });
 
 export const metadata: Metadata = {
-  title: "OctaCORE",
+  title: "OctaCore",
   description: "BERHENTII JANGAN LANJUTT!",
 };
 
@@ -25,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${sora.variable} ${montserrat.className} antialiased`}
       >
         {children}
       </body>
