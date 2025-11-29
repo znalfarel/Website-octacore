@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function HeroSection() {
   return (
     <>
-      <section className="w-full min-h-screen bg-linear-120 from-purple-950 to-blue-800 text-white flex items-center py-20">
+      <section className="w-full min-h-screen  text-white flex items-center py-20">
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
           {/* LEFT CONTENT */}
           <div className="space-y-5 ml-10">
