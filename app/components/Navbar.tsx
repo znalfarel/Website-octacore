@@ -22,12 +22,10 @@ export default function Nav() {
 
   const handleNavClick = (item: (typeof navItems)[0]) => {
     if (item.scrollTo) {
-      // Jika ada scrollTo, scroll ke elemen dengan id tersebut
       const element = document.getElementById(item.scrollTo);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       } else {
-        // Jika belum ada di halaman, navigasi ke home dulu
         router.push(item.href);
         setTimeout(() => {
           const el = document.getElementById(item.scrollTo);
