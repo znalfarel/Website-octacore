@@ -9,14 +9,38 @@ import {
   Button,
 } from "@heroui/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "About", href: "/about" },
+  { label: "Services", href: "/", scrollTo: "services" },
+  { label: "About", href: "/", scrollTo: "about" },
 ];
 
 export default function Nav() {
+  const router = useRouter();
+
+  const handleNavClick = (item: (typeof navItems)[0]) => {
+    if (item.scrollTo) {
+      // Jika ada scrollTo, scroll ke elemen dengan id tersebut
+      const element = document.getElementById(item.scrollTo);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // Jika belum ada di halaman, navigasi ke home dulu
+        router.push(item.href);
+        setTimeout(() => {
+          const el = document.getElementById(item.scrollTo);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 500);
+      }
+    } else {
+      router.push(item.href);
+    }
+  };
+
   return (
     <Navbar className="justify-between py-4 md:py-6 md:px-8 top-0 z-50 absolute">
       <NavbarBrand className="gap-2">
@@ -27,7 +51,12 @@ export default function Nav() {
       <NavbarContent className="hidden sm:flex space-x-6" justify="center">
         {navItems.map((item) => (
           <NavbarItem key={item.label}>
-            <Link href={item.href}>{item.label}</Link>
+            <button
+              onClick={() => handleNavClick(item)}
+              className="text-foreground hover:text-primary transition-colors cursor-pointer"
+            >
+              {item.label}
+            </button>
           </NavbarItem>
         ))}
       </NavbarContent>
