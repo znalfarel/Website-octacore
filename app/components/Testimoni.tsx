@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronRight, ChevronLeft, Star } from "lucide-react";
 
 export default function Testimoni() {
     const [currentTestimonial, setCurrentTestimonial] = useState(0);
+    const [touchStart, setTouchStart] = useState<number | null>(null);
 
   const testimonials = [
     {
@@ -33,10 +34,10 @@ export default function Testimoni() {
     },
     {
       id: 4,
-      name: "Hildan Admin",
+      name: "Oktovian",
       role: "Cosplayer",
       image: "/testimonial-4.jpg",
-      content: "Aplikasi premium yang dijual original dan tidak bajakan. 100% trusted deh",
+      content: "Aplikasi premium yang dijual original dan tidak bajakan. 100% trusted deh sugoiiii >//<",
       rating: 5,
     },
   ];
@@ -49,6 +50,29 @@ export default function Testimoni() {
     setCurrentTestimonial((prev) => 
       prev === 0 ? testimonials.length - 1 : prev - 1
     );
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextTestimonial();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+  
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStart - touchEnd;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) nextTestimonial();
+      else prevTestimonial();
+    }
+    setTouchStart(null);
   };
 
     return (
@@ -72,7 +96,7 @@ export default function Testimoni() {
           {/* Testimonial Carousel */}
           <div className="relative max-w-4xl mx-auto">
             {/* Testimonial Card */}
-            <div className="overflow-hidden">
+            <div className="overflow-hidden" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
               <div
                 className="transition-all duration-500 ease-out"
                 style={{
