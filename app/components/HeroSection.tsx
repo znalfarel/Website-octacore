@@ -1,7 +1,11 @@
+"use client"
+
 import Image from "next/image";
-import { Code, Zap, Layout, Award, PenTool, ShoppingCart } from "lucide-react";
+import { Code, Zap, PenTool, ShoppingCart} from "lucide-react";
+
 
 export default function HeroSection() {
+
   return (
     <>
       {/* MAIN HERO */}
