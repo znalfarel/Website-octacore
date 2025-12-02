@@ -76,10 +76,10 @@ export default function Testimoni() {
   };
 
     return (
-      <section className="w-full py-12 sm:py-16 md:py-24 lg:py-32 bg-gradient-to-br from-slate-900 to-slate-900 text-white relative overflow-hidden">
+      <section className="w-full py-12 sm:py-16 md:py-24 lg:py-32  bg-slate-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 right-0 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 left-0 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute -top-40 right-0 w-80 h-80 bg-slate-900 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 left-0 w-80 h-80 bg-slate-900 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 md:px-6 lg:px-8 relative z-10">

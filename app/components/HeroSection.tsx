@@ -1,61 +1,59 @@
 "use client"
 
 import Image from "next/image";
-import { Code, Zap, PenTool, ShoppingCart} from "lucide-react";
-
+import { Code, Zap, PenTool, ShoppingCart } from "lucide-react";
 
 export default function HeroSection() {
-
   return (
     <>
       {/* MAIN HERO */}
-      <section className="w-full min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white flex items-center py-16 sm:py-20 md:py-12 lg:py-24 overflow-hidden relative">
+      <section className="w-full min-h-screen bg-slate-900 text-white flex items-center py-12 sm:py-16 md:py-20 lg:py-0 overflow-hidden relative">
         {/* Decorative Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-10 right-10 w-48 sm:w-72 h-48 sm:h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 left-10 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-10 sm:top-16 md:top-20 right-10 sm:right-16 md:right-20 w-64 sm:w-80 md:w-96 lg:w-[500px] h-64 sm:h-80 md:h-96 lg:h-[500px] bg-blue-500/15 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-72 sm:w-96 md:w-[500px] lg:w-[600px] h-72 sm:h-96 md:h-[500px] lg:h-[600px] bg-purple-500/10 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 md:px-6 lg:px-8 relative z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center w-full">
             {/* LEFT CONTENT */}
-            <div className="space-y-4 sm:space-y-6 md:space-y-8 order-2 lg:order-1">
+            <div className="space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8 order-2 lg:order-1 pt-6 sm:pt-0">
 
               {/* Main Heading */}
-              <div className="">
-                <h1 className="font-sora text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight mb-1">
+              <div>
+                <h1 className="font-sora text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-extrabold leading-tight sm:leading-snug md:leading-snug lg:leading-tight mb-2 sm:mb-3 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
                   Jempol kecelup santen
                 </h1>
               </div>
 
               {/* Description */}
-              <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-lg leading-relaxed">
-                Buat harimu menjadi mudah dengan menggunakan layanan kami
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl leading-relaxed sm:leading-relaxed md:leading-relaxed">
+                Buat harimu menjadi mudah dengan menggunakan layanan kami yang terpercaya dan inovatif
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4">
-                <button className="w-full sm:w-auto px-6 py-2.5 sm:py-3 md:px-8 md:py-4 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-500/50 transition duration-300 transform hover:scale-105">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5 lg:gap-6 pt-2 sm:pt-4 md:pt-6 lg:pt-8">
+                <button className="w-full sm:w-auto px-6 sm:px-8 md:px-9 lg:px-10 py-2.5 sm:py-3 md:py-3 lg:py-4 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold text-sm sm:text-base md:text-base lg:text-lg hover:shadow-2xl hover:shadow-blue-500/50 transition duration-300 transform hover:scale-105 active:scale-95 sm:active:scale-100">
                   Mulai Sekarang
                 </button>
-                <button className="w-full sm:w-auto px-6 py-2.5 sm:py-3 md:px-8 md:py-4 rounded-lg bg-white/10 backdrop-blur-md border border-white/30 text-white font-semibold text-sm sm:text-base hover:bg-white/20 transition duration-300">
+                <button className="w-full sm:w-auto px-6 sm:px-8 md:px-9 lg:px-10 py-2.5 sm:py-3 md:py-3 lg:py-4 rounded-lg bg-white/10 backdrop-blur-md border border-white/30 text-white font-semibold text-sm sm:text-base md:text-base lg:text-lg hover:bg-white/20 hover:border-white/50 transition duration-300 active:scale-95 sm:active:scale-100">
                   Pelajari Selengkapnya
                 </button>
               </div>
             </div>
 
             {/* RIGHT IMAGE / ILLUSTRATION */}
-            <div className="flex justify-center items-center order-1 lg:order-2 mb-6 sm:mb-8 lg:mb-0">
-              <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full">
+            <div className="flex justify-center items-center order-1 lg:order-2 mb-4 sm:mb-6 md:mb-8 lg:mb-0">
+              <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl">
                 {/* Glowing border */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl sm:rounded-3xl blur-2xl sm:blur-3xl opacity-30 sm:opacity-40 animate-pulse"></div>
 
                 <Image
                   src="/hero.png"
                   alt="Hero image"
-                  width={500}
-                  height={500}
-                  className="relative drop-shadow-2xl rounded-3xl w-full h-auto object-cover"
+                  width={600}
+                  height={600}
+                  className="relative drop-shadow-2xl rounded-2xl sm:rounded-3xl w-full h-auto object-cover"
                   priority
                 />
               </div>
@@ -65,45 +63,45 @@ export default function HeroSection() {
       </section>
 
       {/* COMPANY PROFILE SECTION */}
-      <section id="about" className="w-full py-12 sm:py-16 md:py-24 lg:py-32 bg-slate-800/50 backdrop-blur-sm text-white">
-        <div className="container mx-auto px-4 sm:px-6 md:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
+      <section id="about" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-slate-900 backdrop-blur-sm text-white">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-20 items-start lg:items-center">
             {/* Left Content */}
-            <div className="space-y-4 sm:space-y-6">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+            <div className="space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
                 Tentang&nbsp;
-                <span className=" bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                   Kami
                 </span>
               </h2>
 
-              <p className="text-justify text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">
+              <p className="text-justify text-gray-300 text-sm sm:text-base md:text-base lg:text-lg leading-relaxed">
                 Kami adalah perusahaan digital yang menghadirkan solusi lengkap untuk kebutuhan teknologi dan kreatif Anda. Mulai dari jasa pembuatan website yang responsif, layanan perbaikan laptop terpercaya, editing foto dan video berkualitas tinggi, hingga bantuan tugas Word dan Excel yang efisien. Kami juga menyediakan aplikasi premium pilihan untuk mendukung produktivitas dan gaya hidup modern. Dengan tim ahli yang berdedikasi, kami berkomitmen memberikan layanan terbaik yang cepat, aman, dan berorientasi pada hasil.
               </p>
 
               {/* Values */}
-              <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-2 sm:pt-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-6 pt-2 sm:pt-3 md:pt-4 lg:pt-4">
                 <div>
-                  <h4 className="font-bold text-blue-400 mb-1 sm:mb-2 text-sm sm:text-base">Inovasi</h4>
-                  <p className="text-xs sm:text-sm text-gray-400">
+                  <h4 className="font-bold text-blue-400 mb-1 sm:mb-1.5 md:mb-2 text-xs sm:text-sm md:text-base lg:text-lg">Inovasi</h4>
+                  <p className="text-xs sm:text-sm md:text-sm lg:text-base text-gray-400 leading-snug">
                     Selalu mencari cara baru dan lebih baik
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-bold text-purple-400 mb-1 sm:mb-2 text-sm sm:text-base">Integritas</h4>
-                  <p className="text-xs sm:text-sm text-gray-400">
+                  <h4 className="font-bold text-purple-400 mb-1 sm:mb-1.5 md:mb-2 text-xs sm:text-sm md:text-base lg:text-lg">Integritas</h4>
+                  <p className="text-xs sm:text-sm md:text-sm lg:text-base text-gray-400 leading-snug">
                     Jujur dan transparan dalam setiap langkah
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-bold text-pink-400 mb-1 sm:mb-2 text-sm sm:text-base">Kualitas</h4>
-                  <p className="text-xs sm:text-sm text-gray-400">
+                  <h4 className="font-bold text-pink-400 mb-1 sm:mb-1.5 md:mb-2 text-xs sm:text-sm md:text-base lg:text-lg">Kualitas</h4>
+                  <p className="text-xs sm:text-sm md:text-sm lg:text-base text-gray-400 leading-snug">
                     Standar tinggi dalam setiap jasa dan produk
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-bold text-cyan-400 mb-1 sm:mb-2 text-sm sm:text-base">Kolaborasi</h4>
-                  <p className="text-xs sm:text-sm text-gray-400">
+                  <h4 className="font-bold text-cyan-400 mb-1 sm:mb-1.5 md:mb-2 text-xs sm:text-sm md:text-base lg:text-lg">Kolaborasi</h4>
+                  <p className="text-xs sm:text-sm md:text-sm lg:text-base text-gray-400 leading-snug">
                     Bekerja sama untuk hasil terbaik
                   </p>
                 </div>
@@ -111,37 +109,37 @@ export default function HeroSection() {
             </div>
 
             {/* Right Stats */}
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
               {/* Stat Box 1 */}
-              <div className="p-4 sm:p-6 md:p-8 rounded-2xl bg-gradient-to-br from-blue-900/30 to-slate-900/30 border border-blue-500/30 text-center hover:border-blue-500/60 transition">
-                <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-400 mb-1 sm:mb-2">
+              <div className="p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-blue-900/30 to-slate-900/30 border border-blue-500/30 text-center hover:border-blue-500/60 hover:bg-blue-900/40 transition duration-300">
+                <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-400 mb-1 sm:mb-2">
                   3+
                 </p>
-                <p className="text-gray-300 font-semibold text-xs sm:text-sm md:text-base">Tahun Pengalaman</p>
+                <p className="text-gray-300 font-semibold text-xs sm:text-sm md:text-base lg:text-lg">Tahun Pengalaman</p>
               </div>
 
               {/* Stat Box 2 */}
-              <div className="p-4 sm:p-6 md:p-8 rounded-2xl bg-gradient-to-br from-purple-900/30 to-slate-900/30 border border-purple-500/30 text-center hover:border-purple-500/60 transition">
-                <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-400 mb-1 sm:mb-2">
+              <div className="p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-purple-900/30 to-slate-900/30 border border-purple-500/30 text-center hover:border-purple-500/60 hover:bg-purple-900/40 transition duration-300">
+                <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-purple-400 mb-1 sm:mb-2">
                   0
                 </p>
-                <p className="text-gray-300 font-semibold text-xs sm:text-sm md:text-base">Klien Puas</p>
+                <p className="text-gray-300 font-semibold text-xs sm:text-sm md:text-base lg:text-lg">Klien Puas</p>
               </div>
 
               {/* Stat Box 3 */}
-              <div className="p-4 sm:p-6 md:p-8 rounded-2xl bg-gradient-to-br from-pink-900/30 to-slate-900/30 border border-pink-500/30 text-center hover:border-pink-500/60 transition">
-                <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-400 mb-1 sm:mb-2">
+              <div className="p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-pink-900/30 to-slate-900/30 border border-pink-500/30 text-center hover:border-pink-500/60 hover:bg-pink-900/40 transition duration-300">
+                <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-pink-400 mb-1 sm:mb-2">
                   0
                 </p>
-                <p className="text-gray-300 font-semibold text-xs sm:text-sm md:text-base">Proyek Sukses</p>
+                <p className="text-gray-300 font-semibold text-xs sm:text-sm md:text-base lg:text-lg">Proyek Sukses</p>
               </div>
 
               {/* Stat Box 4 */}
-              <div className="p-4 sm:p-6 md:p-8 rounded-2xl bg-gradient-to-br from-cyan-900/30 to-slate-900/30 border border-cyan-500/30 text-center hover:border-cyan-500/60 transition">
-                <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-cyan-400 mb-1 sm:mb-2">
+              <div className="p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-cyan-900/30 to-slate-900/30 border border-cyan-500/30 text-center hover:border-cyan-500/60 hover:bg-cyan-900/40 transition duration-300">
+                <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-cyan-400 mb-1 sm:mb-2">
                   8
                 </p>
-                <p className="text-gray-300 font-semibold text-xs sm:text-sm md:text-base">Expert Team</p>
+                <p className="text-gray-300 font-semibold text-xs sm:text-sm md:text-base lg:text-lg">Expert Team</p>
               </div>
             </div>
           </div>
@@ -149,42 +147,38 @@ export default function HeroSection() {
       </section>
 
       {/* VISI MISI SECTION */}
-      <section className="w-full py-12 sm:py-16 md:py-24 lg:py-32 bg-slate-800/50 backdrop-blur-sm text-white">
-        <div className="container mx-auto px-4 sm:px-6 md:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
+      <section className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-slate-900 backdrop-blur-sm text-white">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
             {/* VISI */}
-            <div className="space-y-3 sm:space-y-4 p-4 sm:p-6 md:p-8 rounded-2xl bg-gradient-to-br from-blue-900/30 to-blue-900/10 border border-blue-500/30 hover:border-blue-500/60 transition duration-300 group">
-              <div className="w-12 h-12 rounded-lg bg-blue-500/20 border border-blue-500/50 flex items-center justify-center group-hover:bg-blue-500/30 transition">
-                <Zap className="w-6 h-6 text-blue-400" />
+            <div className="space-y-3 sm:space-y-4 md:space-y-4 lg:space-y-4 p-5 sm:p-6 md:p-7 lg:p-10 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-blue-900/30 to-blue-900/10 border border-blue-500/30 hover:border-blue-500/60 transition duration-300 group">
+              <div className="w-10 sm:w-12 md:w-12 lg:w-14 h-10 sm:h-12 md:h-12 lg:h-14 rounded-lg bg-blue-500/20 border border-blue-500/50 flex items-center justify-center group-hover:bg-blue-500/30 transition">
+                <Zap className="w-5 sm:w-6 md:w-6 lg:w-7 h-5 sm:h-6 md:h-6 lg:h-7 text-blue-400" />
               </div>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold">Visi Kami</h3>
-              <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+              <h3 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold">Visi Kami</h3>
+              <p className="text-gray-300 text-sm sm:text-base md:text-base lg:text-lg leading-relaxed">
                 Menjadi penyedia layanan digital terpercaya yang mendukung produktivitas dan kreativitas masyarakat Indonesia melalui solusi teknologi yang inovatif, efisien, dan berkelanjutan
               </p>
             </div>
 
             {/* MISI */}
-            <div className="space-y-3 sm:space-y-4 p-4 sm:p-6 md:p-8 rounded-2xl bg-gradient-to-br from-purple-900/30 to-purple-900/10 border border-purple-500/30 hover:border-purple-500/60 transition duration-300 group">
-              <div className="w-12 h-12 rounded-lg bg-purple-500/20 border border-purple-500/50 flex items-center justify-center group-hover:bg-purple-500/30 transition">
-                <Code className="w-6 h-6 text-purple-400" />
+            <div className="space-y-3 sm:space-y-4 md:space-y-4 lg:space-y-4 p-5 sm:p-6 md:p-7 lg:p-10 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-purple-900/30 to-purple-900/10 border border-purple-500/30 hover:border-purple-500/60 transition duration-300 group">
+              <div className="w-10 sm:w-12 md:w-12 lg:w-14 h-10 sm:h-12 md:h-12 lg:h-14 rounded-lg bg-purple-500/20 border border-purple-500/50 flex items-center justify-center group-hover:bg-purple-500/30 transition">
+                <Code className="w-5 sm:w-6 md:w-6 lg:w-7 h-5 sm:h-6 md:h-6 lg:h-7 text-purple-400" />
               </div>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold">Misi Kami</h3>
-              <ul className="space-y-2 text-gray-300 text-sm sm:text-base">
-                <li className="flex items-start gap-3">
-                  <span className="text-purple-400 mt-1">•</span>
-                  <span>
-                    Memberikan solusi digital terbaik dengan harga terjangkau
-                  </span>
+              <h3 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold">Misi Kami</h3>
+              <ul className="space-y-2 sm:space-y-2.5 md:space-y-2.5 lg:space-y-3 text-gray-300 text-sm sm:text-base md:text-base lg:text-lg">
+                <li className="flex items-start gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3">
+                  <span className="text-purple-400 mt-0.5 sm:mt-0.5 font-bold flex-shrink-0">•</span>
+                  <span>Memberikan solusi digital terbaik dengan harga terjangkau</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-purple-400 mt-1">•</span>
+                <li className="flex items-start gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3">
+                  <span className="text-purple-400 mt-0.5 sm:mt-0.5 font-bold flex-shrink-0">•</span>
                   <span>Memberdayakan UMKM melalui teknologi</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-purple-400 mt-1">•</span>
-                  <span>
-                    Memberikan layanan terbaik dengan support 24/7
-                  </span>
+                <li className="flex items-start gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3">
+                  <span className="text-purple-400 mt-0.5 sm:mt-0.5 font-bold flex-shrink-0">•</span>
+                  <span>Memberikan layanan terbaik dengan support 24/7</span>
                 </li>
               </ul>
             </div>
@@ -193,69 +187,66 @@ export default function HeroSection() {
       </section>
 
       {/* SERVICES OVERVIEW */}
-      <section id="services" className="w-full py-12 sm:py-16 md:py-24 lg:py-32 bg-gradient-to-br from-slate-900 to-slate-900 text-white">
-        <div className="container mx-auto px-4 sm:px-6 md:px-6 lg:px-8">
+      <section id="services" className="w-full py-12 sm:py-16 md:py-20 lg:py-32 bg-gradient-to-br from-slate-900 to-slate-900 text-white">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           {/* Section Header */}
-          <div className="text-center mb-8 sm:mb-12 md:mb-16 space-y-3 sm:space-y-4">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16 lg:mb-24 space-y-2 sm:space-y-3 md:space-y-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
               Layanan Unggulan Kami
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
+            <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base md:text-base lg:text-lg leading-relaxed">
               Solusi komprehensif untuk semua kebutuhan digital Anda
             </p>
           </div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
             {/* Service Card 1 */}
-            <div className="group p-4 sm:p-6 md:p-8 rounded-2xl bg-gradient-to-br from-blue-900/20 to-slate-900/50 border border-blue-500/30 hover:border-blue-500/60 hover:bg-blue-900/30 transition duration-300 cursor-pointer">
-              <div className="w-12 h-12 rounded-lg bg-blue-500/20 border border-blue-500/50 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-                <Code className="w-6 h-6 text-blue-400" />
+            <div className="group p-5 sm:p-6 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-blue-900/20 to-slate-900/50 border border-blue-500/30 hover:border-blue-500/60 hover:bg-blue-900/30 transition duration-300 cursor-pointer">
+              <div className="w-10 sm:w-11 md:w-12 lg:w-14 h-10 sm:h-11 md:h-12 lg:h-14 rounded-lg bg-blue-500/20 border border-blue-500/50 flex items-center justify-center mb-4 sm:mb-5 md:mb-5 lg:mb-6 group-hover:scale-110 transition">
+                <Code className="w-5 sm:w-5.5 md:w-6 lg:w-7 h-5 sm:h-5.5 md:h-6 lg:h-7 text-blue-400" />
               </div>
-              <h4 className="text-base sm:text-lg md:text-xl font-bold mb-2">
+              <h4 className="text-base sm:text-lg md:text-lg lg:text-xl font-bold mb-2 sm:mb-2.5 md:mb-3 lg:mb-3">
                 Website Development
               </h4>
-              <p className="text-gray-400 text-xs sm:text-sm md:text-base">
-                Buat website profesional yang mengkonversi pengunjung menjadi
-                pelanggan
+              <p className="text-gray-400 text-xs sm:text-sm md:text-sm lg:text-lg leading-relaxed">
+                Buat website profesional yang mengkonversi pengunjung menjadi pelanggan
               </p>
             </div>
 
             {/* Service Card 2 */}
-            <div className="group p-4 sm:p-6 md:p-8 rounded-2xl bg-gradient-to-br from-pink-900/20 to-slate-900/50 border border-pink-500/30 hover:border-pink-500/60 hover:bg-pink-900/30 transition duration-300 cursor-pointer">
-              <div className="w-12 h-12 rounded-lg bg-pink-500/20 border border-pink-500/50 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-                <Zap className="w-6 h-6 text-pink-400" />
+            <div className="group p-5 sm:p-6 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-pink-900/20 to-slate-900/50 border border-pink-500/30 hover:border-pink-500/60 hover:bg-pink-900/30 transition duration-300 cursor-pointer">
+              <div className="w-10 sm:w-11 md:w-12 lg:w-14 h-10 sm:h-11 md:h-12 lg:h-14 rounded-lg bg-pink-500/20 border border-pink-500/50 flex items-center justify-center mb-4 sm:mb-5 md:mb-5 lg:mb-6 group-hover:scale-110 transition">
+                <Zap className="w-5 sm:w-5.5 md:w-6 lg:w-7 h-5 sm:h-5.5 md:h-6 lg:h-7 text-pink-400" />
               </div>
-              <h4 className="text-base sm:text-lg md:text-xl font-bold mb-2">
+              <h4 className="text-base sm:text-lg md:text-lg lg:text-xl font-bold mb-2 sm:mb-2.5 md:mb-3 lg:mb-3">
                 Service Laptop
               </h4>
-              <p className="text-gray-400 text-xs sm:text-sm md:text-base">
-                Layanan maintenance dan support teknis tersedia 24/7 untuk laptop
-                Anda
+              <p className="text-gray-400 text-xs sm:text-sm md:text-sm lg:text-lg leading-relaxed">
+                Layanan maintenance dan support teknis tersedia 24/7 untuk laptop Anda
               </p>
             </div>
 
             {/* Service Card 3 */}
-            <div className="group p-4 sm:p-6 md:p-8 rounded-2xl bg-gradient-to-br from-purple-900/20 to-slate-900/50 border border-purple-500/30 hover:border-purple-500/60 hover:bg-purple-900/30 transition duration-300 cursor-pointer">
-              <div className="w-12 h-12 rounded-lg bg-purple-500/20 border border-purple-500/50 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-                <PenTool className="w-6 h-6 text-purple-400" />
+            <div className="group p-5 sm:p-6 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-purple-900/20 to-slate-900/50 border border-purple-500/30 hover:border-purple-500/60 hover:bg-purple-900/30 transition duration-300 cursor-pointer">
+              <div className="w-10 sm:w-11 md:w-12 lg:w-14 h-10 sm:h-11 md:h-12 lg:h-14 rounded-lg bg-purple-500/20 border border-purple-500/50 flex items-center justify-center mb-4 sm:mb-5 md:mb-5 lg:mb-6 group-hover:scale-110 transition">
+                <PenTool className="w-5 sm:w-5.5 md:w-6 lg:w-7 h-5 sm:h-5.5 md:h-6 lg:h-7 text-purple-400" />
               </div>
-              <h4 className="text-base sm:text-lg md:text-xl font-bold mb-2">
+              <h4 className="text-base sm:text-lg md:text-lg lg:text-xl font-bold mb-2 sm:mb-2.5 md:mb-3 lg:mb-3">
                 Editing Foto dan Video
               </h4>
-              <p className="text-gray-400 text-xs sm:text-sm md:text-base">
+              <p className="text-gray-400 text-xs sm:text-sm md:text-sm lg:text-lg leading-relaxed">
                 Solusi editing visual yang responsif dan mudah digunakan, lengkap dengan filter, efek, dan alat kreatif.
               </p>
             </div>
 
-
             {/* Service Card 4 */}
-            <div className="group p-4 sm:p-6 md:p-8 rounded-2xl bg-gradient-to-br from-cyan-900/20 to-slate-900/50 border border-cyan-500/30 hover:border-cyan-500/60 hover:bg-cyan-900/30 transition duration-300 cursor-pointer">
-              <div className="w-12 h-12 rounded-lg bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center mb-4 group-hover:scale-110 transition">
-                <ShoppingCart className="w-6 h-6 text-cyan-400" />
+            <div className="group p-5 sm:p-6 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-cyan-900/20 to-slate-900/50 border border-cyan-500/30 hover:border-cyan-500/60 hover:bg-cyan-900/30 transition duration-300 cursor-pointer">
+              <div className="w-10 sm:w-11 md:w-12 lg:w-14 h-10 sm:h-11 md:h-12 lg:h-14 rounded-lg bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center mb-4 sm:mb-5 md:mb-5 lg:mb-6 group-hover:scale-110 transition">
+                <ShoppingCart className="w-5 sm:w-5.5 md:w-6 lg:w-7 h-5 sm:h-5.5 md:h-6 lg:h-7 text-cyan-400" />
               </div>
-              <h4 className="text-base sm:text-lg md:text-xl font-bold mb-2">Penjualan Aplikasi Premium</h4>
-              <p className="text-gray-400 text-xs sm:text-sm md:text-base">
+              <h4 className="text-base sm:text-lg md:text-lg lg:text-xl font-bold mb-2 sm:mb-2.5 md:mb-3 lg:mb-3">Penjualan Aplikasi Premium</h4>
+              <p className="text-gray-400 text-xs sm:text-sm md:text-sm lg:text-lg leading-relaxed">
                 Platform penjualan produk premium dengan tampilan elegan, fitur eksklusif, dan pengalaman belanja terbaik.
               </p>
             </div>

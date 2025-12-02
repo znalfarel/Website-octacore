@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { SiTiktok } from "react-icons/si";
+
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -34,11 +36,11 @@ export default function Footer() {
               <Link href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300">
                 <Facebook size={18} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-pink-600 hover:text-white transition-all duration-300">
+              <Link href="https://www.instagram.com/octacore_official" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-pink-600 hover:text-white transition-all duration-300">
                 <Instagram size={18} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all duration-300">
-                <Twitter size={18} />
+              <Link href="https://www.tiktok.com/@octacore.ofc" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all duration-300">
+                <SiTiktok size={18} />
               </Link>
               <Link href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-700 hover:text-white transition-all duration-300">
                 <Linkedin size={18} />
@@ -81,7 +83,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin size={20} className="text-blue-500 mt-1 shrink-0" />
-                <span className="text-sm">Jl. Teknologi Masa Depan No. XX, East Java, Indonesia</span>
+                <span className="text-sm">Jl. Raya Gelam, Sidoarjo, East Java, Indonesia</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={20} className="text-purple-500 shrink-0" />
@@ -89,7 +91,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={20} className="text-pink-500 shrink-0" />
-                <span className="text-sm">hello@octacore.com</span>
+                <span className="text-sm">octacoreofc@gmail.com</span>
               </li>
             </ul>
           </div>
