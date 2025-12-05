@@ -1,13 +1,119 @@
 "use client"
 
 import Image from "next/image";
-import { Code, Zap, PenTool, ShoppingCart } from "lucide-react";
+import { Code, Zap, PenTool, ShoppingCart, Target, Binoculars, Wrench } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 export default function HeroSection() {
+  const [stats, setStats] = useState({
+    experience: 0,
+    clients: 0,
+    projects: 0,
+    team: 0,
+  });
+
+  const statsRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
+  const handleSmoothScroll = (sectionId: string) => {
+    const element = document.querySelector(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
+  // Animate counter
+  const animateCounter = (target: number, duration: number = 2000) => {
+    const steps = 60;
+    const stepDuration = duration / steps;
+    const increment = target / steps;
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      return Math.ceil(current);
+    }, stepDuration);
+
+    return timer;
+  };
+
+  // Intersection Observer for scroll trigger
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated.current) {
+            hasAnimated.current = true;
+
+            // Animate each stat
+            let expCount = 0;
+            let clientCount = 0;
+            let projectCount = 0;
+            let teamCount = 0;
+
+            const expInterval = setInterval(() => {
+              expCount++;
+              if (expCount > 3) {
+                clearInterval(expInterval);
+                expCount = 3;
+              }
+              setStats((prev) => ({ ...prev, experience: expCount }));
+            }, 300);
+
+            const clientInterval = setInterval(() => {
+              clientCount += 50;
+              if (clientCount > 0) {
+                clearInterval(clientInterval);
+                clientCount = 0;
+              }
+              setStats((prev) => ({ ...prev, clients: clientCount }));
+            }, 100);
+
+            const projectInterval = setInterval(() => {
+              projectCount += 30;
+              if (projectCount > 0) {
+                clearInterval(projectInterval);
+                projectCount = 0;
+              }
+              setStats((prev) => ({ ...prev, projects: projectCount }));
+            }, 50);
+
+            const teamInterval = setInterval(() => {
+              teamCount++;
+              if (teamCount > 8) {
+                clearInterval(teamInterval);
+                teamCount = 8;
+              }
+              setStats((prev) => ({ ...prev, team: teamCount }));
+            }, 200);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+
+    return () => {
+      if (statsRef.current) {
+        observer.unobserve(statsRef.current);
+      }
+    };
+  }, []);
+
   return (
     <>
       {/* MAIN HERO */}
-      <section className="w-full min-h-screen bg-slate-900 text-white flex items-center py-12 sm:py-16 md:py-20 lg:py-0 overflow-hidden relative">
+      <section id="home" className="w-full min-h-screen bg-slate-900 text-white flex items-center py-12 sm:py-16 md:py-20 lg:py-0 overflow-hidden relative">
         {/* Decorative Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-10 sm:top-16 md:top-20 right-10 sm:right-16 md:right-20 w-64 sm:w-80 md:w-96 lg:w-[500px] h-64 sm:h-80 md:h-96 lg:h-[500px] bg-blue-500/15 rounded-full blur-3xl"></div>
@@ -21,8 +127,8 @@ export default function HeroSection() {
 
               {/* Main Heading */}
               <div>
-                <h1 className="font-sora text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-extrabold leading-tight sm:leading-snug md:leading-snug lg:leading-tight mb-2 sm:mb-3 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-                  Jempol kecelup santen
+                <h1 className="font-sora text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-extrabold leading-tight sm:leading-snug md:leading-snug lg:leading-tight mb-2 sm:mb-3 bg-gradient-to-r from-white via-pink-100 to-purple-200 bg-clip-text text-transparent">
+                  Jempol Kecelup Santen
                 </h1>
               </div>
 
@@ -33,10 +139,13 @@ export default function HeroSection() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5 lg:gap-6 pt-2 sm:pt-4 md:pt-6 lg:pt-8">
-                <button className="w-full sm:w-auto px-6 sm:px-8 md:px-9 lg:px-10 py-2.5 sm:py-3 md:py-3 lg:py-4 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold text-sm sm:text-base md:text-base lg:text-lg hover:shadow-2xl hover:shadow-blue-500/50 transition duration-300 transform hover:scale-105 active:scale-95 sm:active:scale-100">
+                <button className="w-full sm:w-auto px-6 sm:px-8 md:px-9 lg:px-10 py-2.5 sm:py-3 md:py-3 lg:py-4 rounded-lg bg-gradient-to-r from-pink-500 to-purple-700 text-white font-semibold text-sm sm:text-base md:text-base lg:text-lg hover:shadow-2xl hover:shadow-pink-500/50 transition duration-300 transform hover:scale-105 active:scale-95 sm:active:scale-100">
                   Mulai Sekarang
                 </button>
-                <button className="w-full sm:w-auto px-6 sm:px-8 md:px-9 lg:px-10 py-2.5 sm:py-3 md:py-3 lg:py-4 rounded-lg bg-white/10 backdrop-blur-md border border-white/30 text-white font-semibold text-sm sm:text-base md:text-base lg:text-lg hover:bg-white/20 hover:border-white/50 transition duration-300 active:scale-95 sm:active:scale-100">
+                <button 
+                  onClick={() => handleSmoothScroll('#about')}
+                  className="w-full sm:w-auto px-6 sm:px-8 md:px-9 lg:px-10 py-2.5 sm:py-3 md:py-3 lg:py-4 rounded-lg bg-white/10 backdrop-blur-md border border-white/30 text-white font-semibold text-sm sm:text-base md:text-base lg:text-lg hover:bg-white/20 hover:border-white/50 transition duration-300 active:scale-95 sm:active:scale-100 cursor-pointer"
+                >
                   Pelajari Selengkapnya
                 </button>
               </div>
@@ -70,7 +179,7 @@ export default function HeroSection() {
             <div className="space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
                 Tentang&nbsp;
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-pink-500 to-purple-700 bg-clip-text text-transparent">
                   Kami
                 </span>
               </h2>
@@ -109,35 +218,35 @@ export default function HeroSection() {
             </div>
 
             {/* Right Stats */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
-              {/* Stat Box 1 */}
+            <div ref={statsRef} className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+              {/* Stat Box 1 - Tahun Pengalaman */}
               <div className="p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-blue-900/30 to-slate-900/30 border border-blue-500/30 text-center hover:border-blue-500/60 hover:bg-blue-900/40 transition duration-300">
                 <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-400 mb-1 sm:mb-2">
-                  3+
+                  {stats.experience}+
                 </p>
                 <p className="text-gray-300 font-semibold text-xs sm:text-sm md:text-base lg:text-lg">Tahun Pengalaman</p>
               </div>
 
-              {/* Stat Box 2 */}
+              {/* Stat Box 2 - Klien Puas */}
               <div className="p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-purple-900/30 to-slate-900/30 border border-purple-500/30 text-center hover:border-purple-500/60 hover:bg-purple-900/40 transition duration-300">
                 <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-purple-400 mb-1 sm:mb-2">
-                  0
+                  {stats.clients}
                 </p>
                 <p className="text-gray-300 font-semibold text-xs sm:text-sm md:text-base lg:text-lg">Klien Puas</p>
               </div>
 
-              {/* Stat Box 3 */}
+              {/* Stat Box 3 - Proyek Sukses */}
               <div className="p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-pink-900/30 to-slate-900/30 border border-pink-500/30 text-center hover:border-pink-500/60 hover:bg-pink-900/40 transition duration-300">
                 <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-pink-400 mb-1 sm:mb-2">
-                  0
+                  {stats.projects}
                 </p>
                 <p className="text-gray-300 font-semibold text-xs sm:text-sm md:text-base lg:text-lg">Proyek Sukses</p>
               </div>
 
-              {/* Stat Box 4 */}
+              {/* Stat Box 4 - Expert Team */}
               <div className="p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-cyan-900/30 to-slate-900/30 border border-cyan-500/30 text-center hover:border-cyan-500/60 hover:bg-cyan-900/40 transition duration-300">
                 <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-cyan-400 mb-1 sm:mb-2">
-                  8
+                  {stats.team}
                 </p>
                 <p className="text-gray-300 font-semibold text-xs sm:text-sm md:text-base lg:text-lg">Expert Team</p>
               </div>
@@ -151,9 +260,9 @@ export default function HeroSection() {
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
             {/* VISI */}
-            <div className="space-y-3 sm:space-y-4 md:space-y-4 lg:space-y-4 p-5 sm:p-6 md:p-7 lg:p-10 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-blue-900/30 to-blue-900/10 border border-blue-500/30 hover:border-blue-500/60 transition duration-300 group">
-              <div className="w-10 sm:w-12 md:w-12 lg:w-14 h-10 sm:h-12 md:h-12 lg:h-14 rounded-lg bg-blue-500/20 border border-blue-500/50 flex items-center justify-center group-hover:bg-blue-500/30 transition">
-                <Zap className="w-5 sm:w-6 md:w-6 lg:w-7 h-5 sm:h-6 md:h-6 lg:h-7 text-blue-400" />
+            <div className="space-y-3 sm:space-y-4 md:space-y-4 lg:space-y-4 p-5 sm:p-6 md:p-7 lg:p-10 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-pink-900/30 to-pink-900/10 border border-pink-500/30 hover:border-pink-500/60 transition duration-300 group">
+              <div className="w-10 sm:w-12 md:w-12 lg:w-14 h-10 sm:h-12 md:h-12 lg:h-14 rounded-lg bg-pink-500/20 border border-pink-500/50 flex items-center justify-center group-hover:bg-pink-500/30 transition">
+                <Binoculars className="w-5 sm:w-6 md:w-6 lg:w-7 h-5 sm:h-6 md:h-6 lg:h-7 text-pink-400" />
               </div>
               <h3 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold">Visi Kami</h3>
               <p className="text-gray-300 text-sm sm:text-base md:text-base lg:text-lg leading-relaxed">
@@ -164,7 +273,7 @@ export default function HeroSection() {
             {/* MISI */}
             <div className="space-y-3 sm:space-y-4 md:space-y-4 lg:space-y-4 p-5 sm:p-6 md:p-7 lg:p-10 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-purple-900/30 to-purple-900/10 border border-purple-500/30 hover:border-purple-500/60 transition duration-300 group">
               <div className="w-10 sm:w-12 md:w-12 lg:w-14 h-10 sm:h-12 md:h-12 lg:h-14 rounded-lg bg-purple-500/20 border border-purple-500/50 flex items-center justify-center group-hover:bg-purple-500/30 transition">
-                <Code className="w-5 sm:w-6 md:w-6 lg:w-7 h-5 sm:h-6 md:h-6 lg:h-7 text-purple-400" />
+                <Target className="w-5 sm:w-6 md:w-6 lg:w-7 h-5 sm:h-6 md:h-6 lg:h-7 text-purple-400" />
               </div>
               <h3 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold">Misi Kami</h3>
               <ul className="space-y-2 sm:space-y-2.5 md:space-y-2.5 lg:space-y-3 text-gray-300 text-sm sm:text-base md:text-base lg:text-lg">
@@ -217,7 +326,7 @@ export default function HeroSection() {
             {/* Service Card 2 */}
             <div className="group p-5 sm:p-6 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-pink-900/20 to-slate-900/50 border border-pink-500/30 hover:border-pink-500/60 hover:bg-pink-900/30 transition duration-300 cursor-pointer">
               <div className="w-10 sm:w-11 md:w-12 lg:w-14 h-10 sm:h-11 md:h-12 lg:h-14 rounded-lg bg-pink-500/20 border border-pink-500/50 flex items-center justify-center mb-4 sm:mb-5 md:mb-5 lg:mb-6 group-hover:scale-110 transition">
-                <Zap className="w-5 sm:w-5.5 md:w-6 lg:w-7 h-5 sm:h-5.5 md:h-6 lg:h-7 text-pink-400" />
+                <Wrench className="w-5 sm:w-5.5 md:w-6 lg:w-7 h-5 sm:h-5.5 md:h-6 lg:h-7 text-pink-400" />
               </div>
               <h4 className="text-base sm:text-lg md:text-lg lg:text-xl font-bold mb-2 sm:mb-2.5 md:mb-3 lg:mb-3">
                 Service Laptop
@@ -228,7 +337,7 @@ export default function HeroSection() {
             </div>
 
             {/* Service Card 3 */}
-            <div className="group p-5 sm:p-6 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-purple-900/20 to-slate-900/50 border border-purple-500/30 hover:border-purple-500/60 hover:bg-purple-900/30 transition duration-300 cursor-pointer">
+            <div className="group p-5 sm:p-6 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-linear-to-br from-purple-900/20 to-slate-900/50 border border-purple-500/30 hover:border-purple-500/60 hover:bg-purple-900/30 transition duration-300 cursor-pointer">
               <div className="w-10 sm:w-11 md:w-12 lg:w-14 h-10 sm:h-11 md:h-12 lg:h-14 rounded-lg bg-purple-500/20 border border-purple-500/50 flex items-center justify-center mb-4 sm:mb-5 md:mb-5 lg:mb-6 group-hover:scale-110 transition">
                 <PenTool className="w-5 sm:w-5.5 md:w-6 lg:w-7 h-5 sm:h-5.5 md:h-6 lg:h-7 text-purple-400" />
               </div>

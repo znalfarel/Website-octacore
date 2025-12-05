@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sora, Montserrat } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/Navbar";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body
         className={`bg-linear-120 from-purple-950 to-blue-800 ${sora.variable} ${montserrat.className} antialiased`}
       >
+        <Navbar />
         {children}
       </body>
     </html>
