@@ -10,6 +10,11 @@ export default function Navbar() {
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
+  // NEW: visible state + refs for scroll detection
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -50,6 +55,36 @@ export default function Navbar() {
     };
   }, []);
 
+  // NEW: hide on scroll down, show on scroll up
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          // always show near top
+          if (currentY <= 50) {
+            setVisible(true);
+          } else if (currentY > lastScrollY.current) {
+            // scrolling down
+            setVisible(false);
+          } else {
+            // scrolling up
+            setVisible(true);
+          }
+
+          lastScrollY.current = currentY;
+          ticking.current = false;
+        });
+
+        ticking.current = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     
@@ -72,7 +107,11 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-xl border-b border-white/10">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-xl border-b border-white/10 transform transition-transform duration-300 ease-out ${
+        visible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
@@ -103,7 +142,7 @@ export default function Navbar() {
             </button>
 
             {/* Desktop Sign Up */}
-            <button className="hidden lg:block px-6 py-2 rounded-lg bg-gradient-to-r from-pink-500 to-purple-700 text-white font-semibold text-sm hover:shadow-lg hover:shadow-purple-500/50 transition duration-300 transform hover:scale-105">
+            <button className="hidden lg:block px-6 py-2 rounded-lg bg-linear-to-r from-pink-500 to-purple-700 text-white font-semibold text-sm hover:shadow-lg hover:shadow-purple-500/50 transition duration-300 transform hover:scale-105">
               Sign Up
             </button>
 
@@ -154,7 +193,7 @@ export default function Navbar() {
 
               {/* Divider */}
               <div
-                className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent my-4 transition-all duration-500"
+                className="h-px bg-linear-to-r from-transparent via-white/20 to-transparent my-4 transition-all duration-500"
                 style={{
                   opacity: isOpen ? 1 : 0,
                   transitionDelay: isOpen ? `${menuItems.length * 40}ms` : "0ms",
@@ -175,7 +214,7 @@ export default function Navbar() {
                   Sign In
                 </button>
                 <button
-                  className="w-full px-4 py-3 rounded-lg bg-gradient-to-r from-pink-500 to-purple-700 text-white font-semibold text-sm hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 transform active:scale-95"
+                  className="w-full px-4 py-3 rounded-lg bg-linear-to-r from-pink-500 to-purple-700 text-white font-semibold text-sm hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 transform active:scale-95"
                   style={{
                     opacity: isOpen ? 1 : 0,
                     transform: isOpen ? "translateY(0)" : "translateY(10px)",
