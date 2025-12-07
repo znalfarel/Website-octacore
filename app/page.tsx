@@ -1,9 +1,9 @@
 
-import Footer from "./components/Footer";
-import HeroSection from "./components/HeroSection";
-import Nav from "./components/Navbar";
-import Testimoni from "./components/Testimoni";
-import Portfolio from "./components/Portfolio";
+import Footer from "@/app/components/Footer";
+import HeroSection from "@/app/components/HeroSection";
+import Nav from "@/app/components/Navbar";
+import Testimoni from "@/app/components/Testimoni";
+import Portfolio from "@/app/components/Portfolio";
 
 export default function Page() {
   return (

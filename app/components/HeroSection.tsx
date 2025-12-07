@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Code, Zap, PenTool, ShoppingCart, Target, Binoculars, Wrench } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 export default function HeroSection() {
   const [stats, setStats] = useState({
@@ -140,7 +141,7 @@ export default function HeroSection() {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5 lg:gap-6 pt-2 sm:pt-4 md:pt-6 lg:pt-8">
                 <button className="w-full sm:w-auto px-6 sm:px-8 md:px-9 lg:px-10 py-2.5 sm:py-3 md:py-3 lg:py-4 rounded-lg bg-gradient-to-r from-pink-500 to-purple-700 text-white font-semibold text-sm sm:text-base md:text-base lg:text-lg hover:shadow-2xl hover:shadow-pink-500/50 transition duration-300 transform hover:scale-105 active:scale-95 sm:active:scale-100">
-                  Mulai Sekarang
+                  <Link href="/dashboard">Mulai Sekarang</Link>
                 </button>
                 <button 
                   onClick={() => handleSmoothScroll('#about')}
