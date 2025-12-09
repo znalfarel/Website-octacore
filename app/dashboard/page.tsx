@@ -77,7 +77,7 @@ const PREMIUM_SERVICES: PremiumService[] = [
   { id: 2, name: 'Spotify', price: 'Rp 54.900', period: '/bulan', icon: '🎵', logo: '/spotify.png', inStock: true },
   { id: 3, name: 'Canva Pro', price: 'Rp 119.000', period: '/bulan', icon: '🎨', logo: '/canva.webp', inStock: false },
   { id: 4, name: 'HBO Max', price: 'Rp 54.000', period: '/bulan', icon: '📺', logo: '/hbo.png', inStock: true },
-  { id: 5, name: 'YouTube Premium', price: 'Rp 119.000', period: '/bulan', icon: '▶️', logo: '/Youtube.png', inStock: false },
+  { id: 5, name: 'YouTube Premium', price: 'Rp 119.000', period: '/bulan', icon: '▶️', logo: '/yt.png', inStock: false },
   { id: 6, name: 'CapCut Pro', price: 'Rp 49.900', period: '/bulan', icon: '✂️', logo: '/Capcut.png', inStock: true },
   { id: 7, name: 'Viu Premium', price: 'Rp 49.900', period: '/bulan', icon: '🎭', logo: '/viu.png', inStock: true },
   { id: 8, name: 'iQIYI Premium', price: 'Rp 39.900', period: '/bulan', icon: '🎞️', logo: '/iqiyi.webp', inStock: true },
