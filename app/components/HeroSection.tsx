@@ -140,9 +140,11 @@ export default function HeroSection() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5 lg:gap-6 pt-2 sm:pt-4 md:pt-6 lg:pt-8">
-                <button className="w-full sm:w-auto px-6 sm:px-8 md:px-9 lg:px-10 py-2.5 sm:py-3 md:py-3 lg:py-4 rounded-lg bg-gradient-to-r from-pink-500 to-purple-700 text-white font-semibold text-sm sm:text-base md:text-base lg:text-lg hover:shadow-2xl hover:shadow-pink-500/50 transition duration-300 transform hover:scale-105 active:scale-95 sm:active:scale-100">
-                  <Link href="/dashboard">Mulai Sekarang</Link>
-                </button>
+                <Link href="/dashboard">
+                  <button className="w-full sm:w-auto px-6 sm:px-8 md:px-9 lg:px-10 py-2.5 sm:py-3 md:py-3 lg:py-4 rounded-lg bg-gradient-to-r from-pink-500 to-purple-700 text-white font-semibold text-sm sm:text-base md:text-base lg:text-lg hover:shadow-2xl hover:shadow-pink-500/50 transition duration-300 transform hover:scale-105 active:scale-95 sm:active:scale-100">
+                    Mulai Sekarang
+                  </button>
+                </Link>
                 <button 
                   onClick={() => handleSmoothScroll('#about')}
                   className="w-full sm:w-auto px-6 sm:px-8 md:px-9 lg:px-10 py-2.5 sm:py-3 md:py-3 lg:py-4 rounded-lg bg-white/10 backdrop-blur-md border border-white/30 text-white font-semibold text-sm sm:text-base md:text-base lg:text-lg hover:bg-white/20 hover:border-white/50 transition duration-300 active:scale-95 sm:active:scale-100 cursor-pointer"
