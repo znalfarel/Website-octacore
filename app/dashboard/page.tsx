@@ -118,7 +118,7 @@ const BannerCarousel: React.FC = () => {
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex ? 'bg-pink-600 w-6' : 'bg-gray-400 w-2'
+              index === currentIndex ? 'bg-pink-500 w-6' : 'bg-gray-400 w-2'
             }`}
           />
         ))}
@@ -179,7 +179,7 @@ const ServiceSection: React.FC<{ title: string; subtitle: string; services: Serv
 
   return (
     <section className="mt-8 px-4 sm:px-8">
-      <h2 className="text-2xl font-extrabold text-pink-700">{title}</h2>
+      <h2 className="text-2xl font-extrabold text-pink-600">{title}</h2>
       <p className="text-sm text-gray-200 mb-4">{subtitle}</p>
       <div className={gridClasses}>
         {services.map((service) => (
@@ -238,7 +238,7 @@ const PremiumCard: React.FC<PremiumService> = ({ name, price, period, icon, logo
       )}
       
       <h3 className="text-gray-800 font-semibold text-sm mb-2">{name}</h3>
-      <p className="text-pink-700 font-bold text-lg">{price}</p>
+      <p className="text-pink-600 font-bold text-lg">{price}</p>
       <p className="text-gray-500 text-xs">{period}</p>
       <button 
         disabled={!inStock}
