@@ -35,12 +35,12 @@ export default function Contact() {
   };
 
   return (
-    // UPDATED: Padding vertical dikurangi di mobile (py-10) agar tidak terlalu boros tempat
-    <div className="min-h-screen bg-slate-900 text-zinc-100 flex flex-col items-center justify-center py-10 px-4 sm:px-6 lg:py-16 lg:px-8 relative overflow-hidden">
+    <div 
+        id="contact"
+        className="min-h-screen bg-slate-900 text-zinc-100 flex flex-col items-center justify-center py-10 px-4 sm:px-6 lg:py-16 lg:px-8 relative overflow-hidden">
       
       {/* Header Section */}
       <div className="text-center mb-10 lg:mb-12 relative z-10">
-        {/* UPDATED: Ukuran font lebih dinamis (text-3xl di mobile -> text-5xl di desktop) */}
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-tight">
           Kontak Kami
         </h1>
@@ -52,8 +52,7 @@ export default function Contact() {
       {/* Main Card Container */}
       <div className="w-full max-w-6xl bg-zinc-900/60 backdrop-blur-md border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col lg:flex-row relative z-10">
         
-        {/* Kolom Kiri: Peta */}
-        {/* UPDATED: Tinggi peta disesuaikan. h-64 (256px) di HP, h-80 (320px) di Tablet, h-auto (full) di Desktop */}
+        {/* Peta */}
         <div className="w-full lg:w-1/2 h-64 sm:h-80 lg:h-auto relative bg-zinc-800 order-1 lg:order-none">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.7624271635345!2d112.70816627508398!3d-7.491462492520734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e1812411a7df%3A0x6f4631d0d1213057!2sUniversitas%20Muhammadiyah%20Sidoarjo%20kampus%202!5e0!3m2!1sid!2sid!4v1765450858952!5m2!1sid!2sid" 
@@ -67,7 +66,6 @@ export default function Contact() {
           ></iframe>
           
           {/* Map Overlay Text */}
-          {/* UPDATED: Padding dan posisi disesuaikan agar tidak menabrak tepi di HP */}
           <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-auto bg-slate-950/90 backdrop-blur-md px-4 py-3 sm:px-5 sm:py-4 rounded-xl border border-zinc-800 flex items-center gap-3 sm:gap-4 shadow-xl">
             <div className="bg-purple-600 p-2 sm:p-3 rounded-full shadow-[0_0_15px_rgba(147,51,234,0.5)] flex-shrink-0">
               <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
@@ -80,7 +78,6 @@ export default function Contact() {
         </div>
 
         {/* Kolom Kanan: Form Kontak */}
-        {/* UPDATED: Padding diubah menjadi p-6 (mobile) -> p-10 (tablet) -> p-14 (desktop) */}
         <div className="w-full lg:w-1/2 p-6 sm:p-10 lg:p-14 flex flex-col justify-center bg-zinc-900/80 relative order-2 lg:order-none">
           
           <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
@@ -125,7 +122,6 @@ export default function Contact() {
                     placeholder="Tulis pesan Anda di sini..."
                     value={formData.message}
                     onChange={handleChange}
-                    // UPDATED: text-sm di mobile agar font tidak terlalu besar saat mengetik
                     className="block w-full pl-12 pr-4 py-4 bg-zinc-950/50 border border-zinc-700 text-zinc-200 placeholder-zinc-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600/50 focus:border-purple-600 transition-all duration-300 hover:border-zinc-600 resize-none text-sm sm:text-base"
                 />
             </div>
@@ -169,7 +165,6 @@ export default function Contact() {
   );
 }
 
-// Komponen Input Kecil (Reused)
 const InputItem = ({ icon, ...props }: any) => (
   <div className="group relative">
     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -177,7 +172,7 @@ const InputItem = ({ icon, ...props }: any) => (
         {icon}
       </div>
     </div>
-    {/* UPDATED: text-sm pada input di layar kecil */}
+
     <input
       {...props}
       required
