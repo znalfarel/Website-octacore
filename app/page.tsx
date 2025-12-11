@@ -12,8 +12,8 @@ export default function Page() {
       <Nav />
       <HeroSection />
       <Portfolio />
-      <TeamSection />
       <Testimoni />
+      <TeamSection />
       <Footer />
     </>
   );
