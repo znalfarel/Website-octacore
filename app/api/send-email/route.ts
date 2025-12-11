@@ -17,7 +17,7 @@ export async function POST(request: Request) {
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'email_penerima@example.com', 
+      to: 'octacoreofc@gmail.com', 
       subject: `Pesan Baru Website: ${name}`,
       // 2. Tampilkan pesan di dalam isi email HTML
       html: `

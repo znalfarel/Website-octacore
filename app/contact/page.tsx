@@ -5,7 +5,6 @@ import { User, Mail, Phone, MapPin, Send, Loader2, CheckCircle, AlertCircle, Mes
 import axios from "axios";
 
 export default function Contact() {
-  // 1. Menambahkan state 'message'
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,7 +23,6 @@ export default function Contact() {
     setStatus("loading");
 
     try {
-      // Data 'message' sekarang ikut dikirim ke API
       await axios.post("/api/send-email", formData);
       setStatus("success");
       setFormData({ name: "", email: "", phone: "", message: "" });
@@ -37,14 +35,16 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-zinc-100 flex flex-col items-center justify-center py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    // UPDATED: Padding vertical dikurangi di mobile (py-10) agar tidak terlalu boros tempat
+    <div className="min-h-screen bg-slate-900 text-zinc-100 flex flex-col items-center justify-center py-10 px-4 sm:px-6 lg:py-16 lg:px-8 relative overflow-hidden">
       
       {/* Header Section */}
-      <div className="text-center mb-12 relative z-10">
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+      <div className="text-center mb-10 lg:mb-12 relative z-10">
+        {/* UPDATED: Ukuran font lebih dinamis (text-3xl di mobile -> text-5xl di desktop) */}
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-tight">
           Kontak Kami
         </h1>
-        <p className="text-zinc-400 max-w-lg mx-auto text-sm md:text-base leading-relaxed">
+        <p className="text-zinc-400 max-w-lg mx-auto text-sm md:text-base leading-relaxed px-2">
           Hubungi kami untuk pertanyaan, kerjasama, atau sekadar menyapa. Kami siap mendengar pesan Anda.
         </p>
       </div>
@@ -52,8 +52,9 @@ export default function Contact() {
       {/* Main Card Container */}
       <div className="w-full max-w-6xl bg-zinc-900/60 backdrop-blur-md border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col lg:flex-row relative z-10">
         
-        {/* Kolom Kiri: Peta (Styled Dark) */}
-        <div className="w-full lg:w-1/2 h-[400px] lg:h-auto relative bg-zinc-800">
+        {/* Kolom Kiri: Peta */}
+        {/* UPDATED: Tinggi peta disesuaikan. h-64 (256px) di HP, h-80 (320px) di Tablet, h-auto (full) di Desktop */}
+        <div className="w-full lg:w-1/2 h-64 sm:h-80 lg:h-auto relative bg-zinc-800 order-1 lg:order-none">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.7624271635345!2d112.70816627508398!3d-7.491462492520734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e1812411a7df%3A0x6f4631d0d1213057!2sUniversitas%20Muhammadiyah%20Sidoarjo%20kampus%202!5e0!3m2!1sid!2sid!4v1765450858952!5m2!1sid!2sid" 
             width="100%"
@@ -66,23 +67,24 @@ export default function Contact() {
           ></iframe>
           
           {/* Map Overlay Text */}
-          <div className="absolute bottom-6 left-6 bg-slate-950/90 backdrop-blur-md px-5 py-4 rounded-xl border border-zinc-800 flex items-center gap-4 shadow-xl">
-            <div className="bg-purple-600 p-3 rounded-full shadow-[0_0_15px_rgba(147,51,234,0.5)]">
-              <MapPin className="w-5 h-5 text-white" />
+          {/* UPDATED: Padding dan posisi disesuaikan agar tidak menabrak tepi di HP */}
+          <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-auto bg-slate-950/90 backdrop-blur-md px-4 py-3 sm:px-5 sm:py-4 rounded-xl border border-zinc-800 flex items-center gap-3 sm:gap-4 shadow-xl">
+            <div className="bg-purple-600 p-2 sm:p-3 rounded-full shadow-[0_0_15px_rgba(147,51,234,0.5)] flex-shrink-0">
+              <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
-            <div>
-              <p className="text-xs text-purple-400 font-semibold uppercase tracking-wider">Lokasi Kami</p>
-              <p className="text-base font-bold text-white">Kampus 2 Umsida, Sidoarjo</p>
+            <div className="min-w-0">
+              <p className="text-[10px] sm:text-xs text-purple-400 font-semibold uppercase tracking-wider truncate">Lokasi Kami</p>
+              <p className="text-sm sm:text-base font-bold text-white truncate">Kampus 2 Umsida, Sidoarjo</p>
             </div>
           </div>
         </div>
 
         {/* Kolom Kanan: Form Kontak */}
-        <div className="w-full lg:w-1/2 p-8 lg:p-14 flex flex-col justify-center bg-zinc-900/80 relative">
+        {/* UPDATED: Padding diubah menjadi p-6 (mobile) -> p-10 (tablet) -> p-14 (desktop) */}
+        <div className="w-full lg:w-1/2 p-6 sm:p-10 lg:p-14 flex flex-col justify-center bg-zinc-900/80 relative order-2 lg:order-none">
           
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
             
-            {/* Input Nama */}
             <InputItem 
                 icon={<User size={18} />} 
                 type="text" 
@@ -92,7 +94,6 @@ export default function Contact() {
                 onChange={handleChange}
             />
 
-            {/* Input Email */}
             <InputItem 
                 icon={<Mail size={18} />} 
                 type="email" 
@@ -102,7 +103,6 @@ export default function Contact() {
                 onChange={handleChange}
             />
 
-            {/* Input Telepon */}
             <InputItem 
                 icon={<Phone size={18} />} 
                 type="tel" 
@@ -112,7 +112,6 @@ export default function Contact() {
                 onChange={handleChange}
             />
 
-            {/* 2. Input Pesan (Textarea Baru) */}
             <div className="group relative">
                 <div className="absolute top-4 left-0 pl-4 flex pointer-events-none">
                     <div className="text-zinc-500 group-focus-within:text-purple-500 transition-colors duration-300">
@@ -126,14 +125,15 @@ export default function Contact() {
                     placeholder="Tulis pesan Anda di sini..."
                     value={formData.message}
                     onChange={handleChange}
-                    className="block w-full pl-12 pr-4 py-4 bg-zinc-950/50 border border-zinc-700 text-zinc-200 placeholder-zinc-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600/50 focus:border-purple-600 transition-all duration-300 hover:border-zinc-600 resize-none"
+                    // UPDATED: text-sm di mobile agar font tidak terlalu besar saat mengetik
+                    className="block w-full pl-12 pr-4 py-4 bg-zinc-950/50 border border-zinc-700 text-zinc-200 placeholder-zinc-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600/50 focus:border-purple-600 transition-all duration-300 hover:border-zinc-600 resize-none text-sm sm:text-base"
                 />
             </div>
 
             {/* Status Messages */}
             {status === "success" && (
-              <div className="flex items-center gap-2 text-green-400 text-sm bg-green-400/10 p-3 rounded-lg border border-green-400/20 animate-in fade-in slide-in-from-bottom-2">
-                <CheckCircle size={16} />
+              <div className="flex items-start sm:items-center gap-2 text-green-400 text-sm bg-green-400/10 p-3 rounded-lg border border-green-400/20 animate-in fade-in slide-in-from-bottom-2">
+                <CheckCircle size={16} className="mt-0.5 sm:mt-0 flex-shrink-0" />
                 <span>Pesan terkirim! Terimakasih telah menghubungi kami.</span>
               </div>
             )}
@@ -145,11 +145,10 @@ export default function Contact() {
               </div>
             )}
 
-            {/* Action Button (Purple Gradient) */}
             <button
               type="submit"
               disabled={status === "loading" || status === "success"}
-              className="group w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:to-purple-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-[0_4px_20px_-5px_rgba(147,51,234,0.5)] disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+              className="group w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:to-purple-600 text-white font-bold py-3 sm:py-4 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-[0_4px_20px_-5px_rgba(147,51,234,0.5)] disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 text-sm sm:text-base"
             >
               {status === "loading" ? (
                 <>
@@ -178,10 +177,11 @@ const InputItem = ({ icon, ...props }: any) => (
         {icon}
       </div>
     </div>
+    {/* UPDATED: text-sm pada input di layar kecil */}
     <input
       {...props}
       required
-      className="block w-full pl-12 pr-4 py-4 bg-zinc-950/50 border border-zinc-700 text-zinc-200 placeholder-zinc-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600/50 focus:border-purple-600 transition-all duration-300 hover:border-zinc-600"
+      className="block w-full pl-12 pr-4 py-3 sm:py-4 bg-zinc-950/50 border border-zinc-700 text-zinc-200 placeholder-zinc-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600/50 focus:border-purple-600 transition-all duration-300 hover:border-zinc-600 text-sm sm:text-base"
     />
   </div>
 );
