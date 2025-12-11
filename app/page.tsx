@@ -5,6 +5,7 @@ import Nav from "@/app/components/Navbar";
 import Testimoni from "@/app/components/Testimoni";
 import Portfolio from "@/app/components/Portfolio";
 import TeamSection from "./components/TeamSection";
+import Contact from "./contact/page";
 
 export default function Page() {
   return (
@@ -14,6 +15,7 @@ export default function Page() {
       <Portfolio />
       <Testimoni />
       <TeamSection />
+      <Contact />
       <Footer />
     </>
   );
