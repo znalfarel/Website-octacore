@@ -52,7 +52,7 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {['Home', 'About Us', 'Services', 'Portfolio', 'Contact'].map((item) => (
+              {['Beranda', 'Tentang', 'Layanan', 'Portofolio', 'Kontak'].map((item) => (
                 <li key={item}>
                   <Link href="#" className="text-sm hover:text-blue-400 transition-colors flex items-center gap-2 group">
                     <ArrowRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
@@ -67,7 +67,7 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Layanan Kami</h3>
             <ul className="space-y-2">
-              {['Web Development', 'Laptop Service', 'Video Editing', 'Premium Apps', 'IT Consultant'].map((item) => (
+              {['Web Development', 'Service Laptop', 'Editing Foto & Video', 'Premium Apps'].map((item) => (
                 <li key={item}>
                   <Link href="#" className="text-sm hover:text-purple-400 transition-colors">
                     {item}

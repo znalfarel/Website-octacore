@@ -128,7 +128,7 @@ export default function HeroSection() {
 
               {/* Main Heading */}
               <div>
-                <h1 className="font-sora text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-extrabold leading-tight sm:leading-snug md:leading-snug lg:leading-tight mb-2 sm:mb-3 bg-gradient-to-r from-white via-pink-100 to-purple-200 bg-clip-text text-transparent">
+                <h1 className="font-sora text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-extrabold leading-tight sm:leading-snug md:leading-snug lg:leading-tight mb-2 sm:mb-3 bg-linear-to-r from-white via-pink-100 to-purple-200 bg-clip-text text-transparent">
                   Jempol Kecelup Santen
                 </h1>
               </div>

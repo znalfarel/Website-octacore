@@ -85,7 +85,7 @@ export default function Testimoni() {
         <div className="container mx-auto px-4 sm:px-6 md:px-6 lg:px-8 relative z-10">
           {/* Section Header */}
           <div className="text-center mb-8 sm:mb-12 md:mb-16 space-y-3 sm:space-y-4">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
               Apa Kata Mereka
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">

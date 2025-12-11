@@ -148,7 +148,7 @@ const Portfolio: React.FC = () => {
         
         {/* Judul & Deskripsi */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
             Portofolio Kami
           </h2>
           <p className="mt-3 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">

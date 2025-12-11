@@ -17,7 +17,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "OctaCore",
-  description: "BERHENTII JANGAN LANJUTT!",
+  description: "Layanan Jasa",
   icons: "/octacore.svg",
 };
 
