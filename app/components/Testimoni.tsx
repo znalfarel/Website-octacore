@@ -86,7 +86,10 @@ export default function Testimoni() {
           {/* Section Header */}
           <div className="text-center mb-8 sm:mb-12 md:mb-16 space-y-3 sm:space-y-4">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
-              Apa Kata Mereka
+              Apa Kata&nbsp;
+                <span className=" bg-purple-600 bg-clip-text text-transparent">
+                  Mereka
+                </span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
               Beberapa klien telah merasakan manfaat dan benefit dari layanan kami
@@ -106,7 +109,7 @@ export default function Testimoni() {
                 <div className="flex">
                   {testimonials.map((testimonial, index) => (
                     <div key={testimonial.id} className="w-full flex-shrink-0 px-2 sm:px-4">
-                      <div className="p-6 sm:p-8 md:p-10 rounded-2xl bg-gradient-to-br from-pink-900/30 to-purple-900/20 border border-pink-500/30 hover:border-pink-500/60 transition duration-300 backdrop-blur-sm">
+                      <div className="p-6 sm:p-8 md:p-10 rounded-2xl bg-linear-to-br from-purple-900/30 to-purple-900/20 border border-purple-500/30 hover:border-purple-500/60 transition duration-300 backdrop-blur-sm">
                         {/* Stars */}
                         <div className="flex gap-1 mb-4">
                           {[...Array(testimonial.rating)].map((_, i) => (
@@ -124,7 +127,7 @@ export default function Testimoni() {
 
                         {/* Author */}
                         <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+                          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-linear-to-br from-purple-400 to-purple-600 flex items-center justify-center flex-shrink-0">
                             <span className="text-white font-bold text-sm sm:text-base">
                               {testimonial.name.charAt(0)}
                             </span>
@@ -145,7 +148,7 @@ export default function Testimoni() {
             <div className="flex justify-center items-center gap-4 mt-6 sm:mt-8">
               <button
                 onClick={prevTestimonial}
-                className="p-2 sm:p-3 rounded-lg bg-pink-500/20 border border-pink-500/50 text-pink-400 hover:bg-pink-500/30 hover:border-pink-500/70 transition duration-300 transform hover:scale-110"
+                className="p-2 sm:p-3 rounded-lg bg-purple-500/20 border border-purple-500/50 text-purple-400 hover:bg-purple-500/30 hover:border-purple-500/70 transition duration-300 transform hover:scale-110"
               >
                 <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
@@ -158,8 +161,8 @@ export default function Testimoni() {
                     onClick={() => setCurrentTestimonial(index)}
                     className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition duration-300 ${
                       index === currentTestimonial
-                        ? "bg-pink-500 w-8 sm:w-10"
-                        : "bg-pink-500/40 hover:bg-pink-500/60"
+                        ? "bg-purple-500 w-8 sm:w-10"
+                        : "bg-purple-500/40 hover:bg-purple-500/60"
                     }`}
                   />
                 ))}
@@ -167,7 +170,7 @@ export default function Testimoni() {
 
               <button
                 onClick={nextTestimonial}
-                className="p-2 sm:p-3 rounded-lg bg-pink-500/20 border border-pink-500/50 text-pink-400 hover:bg-pink-500/30 hover:border-pink-500/70 transition duration-300 transform hover:scale-110"
+                className="p-2 sm:p-3 rounded-lg bg-purple-500/20 border border-purple-500/50 text-purple-400 hover:bg-purple-500/30 hover:border-purple-500/70 transition duration-300 transform hover:scale-110"
               >
                 <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>

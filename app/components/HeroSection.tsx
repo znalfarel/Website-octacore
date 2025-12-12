@@ -129,7 +129,7 @@ export default function HeroSection() {
               {/* Main Heading */}
               <div>
                 <h1 className="font-sora text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-extrabold leading-tight sm:leading-snug md:leading-snug lg:leading-tight mb-2 sm:mb-3 bg-linear-to-r from-white via-pink-100 to-purple-200 bg-clip-text text-transparent">
-                  Jempol Kecelup Santen
+                  Octacore Membangun Negeri.
                 </h1>
               </div>
 
@@ -141,7 +141,7 @@ export default function HeroSection() {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5 lg:gap-6 pt-2 sm:pt-4 md:pt-6 lg:pt-8">
                 <Link href="/dashboard">
-                  <button className="w-full sm:w-auto px-6 sm:px-8 md:px-9 lg:px-10 py-2.5 sm:py-3 md:py-3 lg:py-4 rounded-lg bg-gradient-to-r from-pink-500 to-purple-700 text-white font-semibold text-sm sm:text-base md:text-base lg:text-lg hover:shadow-2xl hover:shadow-pink-500/50 transition duration-300 transform hover:scale-105 active:scale-95 sm:active:scale-100">
+                  <button className="w-full sm:w-auto px-6 sm:px-8 md:px-9 lg:px-10 py-2.5 sm:py-3 md:py-3 lg:py-4 rounded-lg bg-purple-600 text-white font-semibold text-sm sm:text-base md:text-base lg:text-lg hover:shadow-2xl hover:shadow-pink-500/50 transition duration-300 transform hover:scale-105 active:scale-95 sm:active:scale-100">
                     Mulai Sekarang
                   </button>
                 </Link>
@@ -182,7 +182,7 @@ export default function HeroSection() {
             <div className="space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
                 Tentang&nbsp;
-                <span className="bg-gradient-to-r from-pink-500 to-purple-700 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r bg-purple-600 bg-clip-text text-transparent">
                   Kami
                 </span>
               </h2>
@@ -267,7 +267,7 @@ export default function HeroSection() {
               <div className="w-10 sm:w-12 md:w-12 lg:w-14 h-10 sm:h-12 md:h-12 lg:h-14 rounded-lg bg-pink-500/20 border border-pink-500/50 flex items-center justify-center group-hover:bg-pink-500/30 transition">
                 <Binoculars className="w-5 sm:w-6 md:w-6 lg:w-7 h-5 sm:h-6 md:h-6 lg:h-7 text-pink-400" />
               </div>
-              <h3 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold">Visi Kami</h3>
+              <h3 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold">Visi</h3>
               <p className="text-gray-300 text-sm sm:text-base md:text-base lg:text-lg leading-relaxed">
                 Menjadi penyedia layanan digital terpercaya yang mendukung produktivitas dan kreativitas masyarakat Indonesia melalui solusi teknologi yang inovatif, efisien, dan berkelanjutan
               </p>
@@ -304,7 +304,10 @@ export default function HeroSection() {
           {/* Section Header */}
           <div className="text-center mb-10 sm:mb-12 md:mb-16 lg:mb-24 space-y-2 sm:space-y-3 md:space-y-4">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
-              Layanan Unggulan Kami
+              Layanan Unggulan&nbsp;
+                <span className="bg-gradient-to-r bg-purple-600 bg-clip-text text-transparent">
+                  Kami
+                </span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base md:text-base lg:text-lg leading-relaxed">
               Solusi komprehensif untuk semua kebutuhan digital Anda

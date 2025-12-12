@@ -91,7 +91,7 @@ const ProjectCard: React.FC<Project> = ({ title, description, tags, link, image 
 
         <div className="p-4 md:p-6 flex flex-col justify-between">
           <div>
-            <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
+            <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
               {title}
             </h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
@@ -101,7 +101,7 @@ const ProjectCard: React.FC<Project> = ({ title, description, tags, link, image 
           
           <div className="flex flex-wrap gap-2 mt-auto">
             {tags.map((tag) => (
-              <span key={tag} className="px-3 py-1 text-xs font-medium bg-indigo-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300 rounded-full shadow-sm">
+              <span key={tag} className="px-3 py-1 text-xs font-medium bg-indigo-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 rounded-full shadow-sm">
                 {tag}
               </span>
             ))}
@@ -143,13 +143,16 @@ const Portfolio: React.FC = () => {
   });
 
   return (
-    <section id="portfolio" className="py-16 md:py-24 bg-gray-50 dark:bg-gray-900 overflow-hidden">
+    <section id="portfolio" className="py-16 md:py-24 bg-slate-900 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Judul & Deskripsi */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
-            Portofolio Kami
+            Portofolio&nbsp;
+                <span className="bg-purple-600 bg-clip-text text-transparent">
+                  Kami
+                </span>
           </h2>
           <p className="mt-3 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Berbagai macam project unggulan kami tersedia disini
@@ -198,7 +201,7 @@ const Portfolio: React.FC = () => {
                       instanceRef.current?.moveToIdx(idx);
                     }}
                     className={`dot w-3 h-3 mx-1 rounded-full transition-all ${
-                      currentSlide === idx ? 'bg-pink-600 w-6' : 'bg-gray-300 dark:bg-gray-700'
+                      currentSlide === idx ? 'bg-purple-600 w-6' : 'bg-gray-300 dark:bg-gray-700'
                     }`}
                   ></button>
                 );
@@ -225,7 +228,7 @@ function Arrow(props: {
         if (props.disabled) return;
         props.onClick?.(e);
       }}
-      className={`absolute top-1/2 -translate-y-1/2 w-10 h-10 p-2 rounded-full bg-pink-600 text-white shadow-lg transition-colors ${
+      className={`absolute top-1/2 -translate-y-1/2 w-10 h-10 p-2 rounded-full bg-purple-600 text-white shadow-lg transition-colors ${
         props.left ? '-left-5' : '-right-5'
       } ${disabledClass}`}
       xmlns="http://www.w3.org/2000/svg"

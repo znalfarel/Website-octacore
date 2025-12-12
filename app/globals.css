@@ -10,7 +10,7 @@
   --color-foreground: var(--foreground);
   --font-montserrat: var(--font-montserrat);
   --font-sora: var(--font-sora);
-  --font-playfair: var(--font-playfair);
+  --font-roboto: var(--font-roboto);
 }
 
 @media (prefers-color-scheme: dark) {

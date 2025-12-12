@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Sora, Montserrat, Playfair_Display } from "next/font/google";
+import { Sora, Montserrat, Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/app/components/Navbar";
 
@@ -9,10 +9,10 @@ const sora = Sora({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
 });
 
-const playfair = Playfair_Display({
+const roboto_slab = Roboto_Slab({
   subsets: ["latin"],
-  variable: "--font-playfair",
-  weight: ["400", "700"],
+  variable: "--font-roboto",
+  weight: ["200", "300", "400", "500", "600", "700"],
 });
 
 const montserrat = Montserrat({
@@ -38,7 +38,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body
-        className={`bg-linear-120 from-purple-950 to-blue-800 ${sora.variable} ${playfair.variable} ${montserrat.className} antialiased`}
+        className={`bg-linear-120 from-purple-950 to-blue-800 ${sora.variable} ${roboto_slab.variable} ${montserrat.className} antialiased`}
       >
         <Navbar />
         {children}

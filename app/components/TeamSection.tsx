@@ -15,7 +15,7 @@ interface TeamMember {
 
 // --- Data Dummy (8 Orang) ---
 const teamMembers: TeamMember[] = [
-  { id: 1, name: "Zackaria Noza A", role: "CEO", image: "/team/frl.jpg" },
+  { id: 1, name: "Zackaria Noza A", role: "Founder & CEO", image: "/team/frl.jpg" },
   { id: 2, name: "Khoirul Ikhsan R", role: "COO", image: "/team/ikhsanz.jpg" },
   { id: 3, name: "Atta Arrafi P", role: "CHRO", image: "/team/atta.png" },
   { id: 4, name: "M Sobahus Sururin", role: "CTO", image: "/team/niamz.jpg" },
@@ -53,7 +53,10 @@ export default function TeamSection() {
           className="text-center mb-10 md:mb-20 space-y-3 sm:space-y-4"
         >
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight">
-            Team Kami
+            Team&nbsp;
+                <span className=" bg-purple-600 bg-clip-text text-transparent">
+                  Kami
+                </span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
               Project ini dibangun oleh 8 Mahasiswa Teknik Informatika UMSIDA
@@ -65,7 +68,7 @@ export default function TeamSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-2 lg:grid-cols-4 font-playfair gap-x-4 gap-y-10 md:gap-x-8 md:gap-y-16 max-w-7xl mx-auto"
+          className="grid grid-cols-2 lg:grid-cols-4 font-roboto gap-x-4 gap-y-10 md:gap-x-8 md:gap-y-16 max-w-7xl mx-auto"
         >
           {teamMembers.map((member) => (
             <TeamMemberItem key={member.id} member={member} />
@@ -105,12 +108,12 @@ function TeamMemberItem({ member }: { member: TeamMember }) {
       </div>
 
       {/* Nama: Text lebih kecil di mobile (text-base) */}
-      <h3 className="text-base md:text-xl font-bold text-purple-600 mb-1 leading-tight playfair">
+      <h3 className="text-base md:text-xl font-bold text-purple-600 mb-1 leading-tight">
         {member.name}
       </h3>
       
       {/* Role: Text lebih kecil di mobile (text-xs) */}
-      <p className="text-xs md:text-sm font-medium text-white-500 uppercase tracking-wide px-1">
+      <p className="text-xs md:text-sm font-medium text-white-500 tracking-wide px-1">
         {member.role}
       </p>
     </motion.div>
