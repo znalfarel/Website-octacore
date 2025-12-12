@@ -15,13 +15,13 @@ interface TeamMember {
 
 // --- Data Dummy (8 Orang) ---
 const teamMembers: TeamMember[] = [
-  { id: 1, name: "Zackaria Noza A", role: "--", image: "/team/frl.jpg" },
-  { id: 2, name: "Khoirul Ikhsan R", role: "--", image: "/team/ikhsanz.jpg" },
-  { id: 3, name: "Atta Arrafi P", role: "--", image: "/team/atta.png" },
-  { id: 4, name: "M Sobahus Sururin", role: "--", image: "/team/niamz.jpg" },
-  { id: 5, name: "Bayu Adi C", role: "--", image: "/team/bayu.png" },
-  { id: 6, name: "Insan Nur R", role: "--", image: "/team/insan.png" },
-  { id: 7, name: "Jakfan Adbar F", role: "--", image: "/team/jakfan.png" },
+  { id: 1, name: "Zackaria Noza A", role: "CEO", image: "/team/frl.jpg" },
+  { id: 2, name: "Khoirul Ikhsan R", role: "COO", image: "/team/ikhsanz.jpg" },
+  { id: 3, name: "Atta Arrafi P", role: "CHRO", image: "/team/atta.png" },
+  { id: 4, name: "M Sobahus Sururin", role: "CTO", image: "/team/niamz.jpg" },
+  { id: 5, name: "Bayu Adi C", role: "CFO", image: "/team/bayu.png" },
+  { id: 6, name: "Insan Nur R", role: "CMO", image: "/team/insan.png" },
+  { id: 7, name: "Jakfan Adbar F", role: "VP Marketing", image: "/team/jakfan.png" },
   { id: 8, name: "Andhika Nuril A", role: "--", image: "/team/dhika.jpg" },
 ];
 
@@ -41,7 +41,7 @@ const itemVariants = {
 
 export default function TeamSection() {
   return (
-    <section className="py-12 md:py-24 bg-slate-900">
+    <section className="py-12 md:py-24 bg-slate-900 ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 ">
         
         {/* Header */}
@@ -65,7 +65,7 @@ export default function TeamSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-8 md:gap-y-16 max-w-7xl mx-auto"
+          className="grid grid-cols-2 lg:grid-cols-4 font-playfair gap-x-4 gap-y-10 md:gap-x-8 md:gap-y-16 max-w-7xl mx-auto"
         >
           {teamMembers.map((member) => (
             <TeamMemberItem key={member.id} member={member} />
@@ -105,7 +105,7 @@ function TeamMemberItem({ member }: { member: TeamMember }) {
       </div>
 
       {/* Nama: Text lebih kecil di mobile (text-base) */}
-      <h3 className="text-base md:text-xl font-bold text-purple-600 mb-1 leading-tight">
+      <h3 className="text-base md:text-xl font-bold text-purple-600 mb-1 leading-tight playfair">
         {member.name}
       </h3>
       

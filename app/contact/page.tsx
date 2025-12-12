@@ -41,11 +41,11 @@ export default function Contact() {
       
       {/* Header Section */}
       <div className="text-center mb-10 lg:mb-12 relative z-10">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-tight">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight">
           Kontak Kami
         </h1>
         <p className="text-zinc-400 max-w-lg mx-auto text-sm md:text-base leading-relaxed px-2">
-          Hubungi kami untuk pertanyaan, kerjasama, atau sekadar menyapa. Kami siap mendengar pesan Anda.
+          Hubungi kami untuk pertanyaan dan kerjasama.
         </p>
       </div>
 
