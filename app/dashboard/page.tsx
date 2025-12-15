@@ -48,14 +48,14 @@ const BANNER_ITEMS: BannerItem[] = [
     id: 3,
     title: 'Kepuasan Pelanggan Adalah Prioritas Kami',
     subtitle: 'Ribuan pengguna telah merasakan manfaatnya',
-    image: '/canv.png',
+    image: '/net.png',
     buttonText: 'Hubungi Kami',
   },
 ];
 
 // --- DATA LAYANAN ---
 const FEATURED_SERVICES: ServiceItem[] = [
-  { id: 1, title: 'Service Laptop', icon: Wrench, label: '5 MENIT RESMI', color: 'blue' },
+  { id: 1, title: 'Service Laptop', icon: Wrench, label: 'BERGARANSI', color: 'blue' },
   { id: 2, title: 'Editing Video & Foto', icon: Video, label: 'REVISI UNLIMITED', color: 'green' },
   { id: 3, title: 'Pembuatan Website', icon: Code, label: 'GRATIS HOSTING', color: 'purple' },
   { id: 4, title: 'Joki Word & Excel', icon: Edit3, label: 'TERMURAH', color: 'red' },
@@ -103,15 +103,25 @@ const BannerCarousel: React.FC = () => {
 
   return (
     <section className="p-4 sm:p-8 pt-0">
-      <div className="relative rounded-2xl shadow-2xl overflow-hidden h-64 sm:h-72 lg:h-80 cursor-pointer group" onClick={handleBannerClick}>
-        <Image
-          src={currentBanner.image}
-          alt={currentBanner.title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          priority
-        />
+      <div className="relative rounded-2xl shadow-2xl overflow-hidden h-64 sm:h-72 lg:h-80 cursor-pointer group">
+        {BANNER_ITEMS.map((banner, index) => (
+          <div
+            key={banner.id}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+          >
+            <Image
+              src={banner.image}
+              alt={banner.title}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              priority={index === currentIndex}
+            />
+          </div>
+        ))}
       </div>
+
       <div className="flex justify-center gap-2 mt-4">
         {BANNER_ITEMS.map((_, index) => (
           <button

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import HomePage from "../dashboard/page";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -86,8 +87,8 @@ export default function Navbar() {
   }, []);
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  if (href.startsWith("#")) {
     e.preventDefault();
-    
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({
@@ -96,14 +97,19 @@ export default function Navbar() {
       });
       setIsOpen(false);
     }
-  };
+  } else {
+    // untuk navigasi ke halaman lain, cukup tutup menu
+    setIsOpen(false);
+  }
+};
+
 
   const menuItems = [
-    { label: "Beranda", href: "#home" },
-    { label: "Tentang Kami", href: "#about" },
-    { label: "Layanan", href: "#services" },
-    { label: "Portofolio", href: "#portfolio" },
-    { label: "Kontak", href: "#contact" },
+    { label: "Beranda", href: "/#home" },
+    // { label: "Tentang Kami", href: "#about" },
+    { label: "Layanan", href: "/dashboard" },
+    { label: "Portofolio", href: "/#portfolio" },
+    { label: "Kontak", href: "/#contact" },
   ];
 
   return (
