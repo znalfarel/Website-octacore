@@ -1,11 +1,58 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, ReactNode } from "react";
 import { ChevronRight, ChevronLeft, Star } from "lucide-react";
 
+// --- 1. KOMPONEN ANIMASI SCROLL (ScrollReveal) ---
+interface ScrollRevealProps {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+}
+
+const ScrollReveal = ({ children, delay = 0, className = "" }: ScrollRevealProps) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          if (ref.current) observer.unobserve(ref.current);
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-1000 ease-[cubic-bezier(0.17,0.55,0.55,1)] transform ${
+        isVisible 
+          ? "opacity-100 translate-y-0" 
+          : "opacity-0 translate-y-12"
+      } ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+};
+
+// --- 2. KOMPONEN UTAMA (TESTIMONI) ---
 export default function Testimoni() {
-    const [currentTestimonial, setCurrentTestimonial] = useState(0);
-    const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
 
   const testimonials = [
     {
@@ -75,15 +122,17 @@ export default function Testimoni() {
     setTouchStart(null);
   };
 
-    return (
-      <section className="w-full py-12 sm:py-16 md:py-24 lg:py-32  bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 right-0 w-80 h-80 bg-slate-900 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 left-0 w-80 h-80 bg-slate-900 rounded-full blur-3xl"></div>
-        </div>
+  return (
+    <section className="w-full py-12 sm:py-16 md:py-24 lg:py-32 bg-slate-900 text-white relative overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 right-0 w-80 h-80 bg-slate-900 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 left-0 w-80 h-80 bg-slate-900 rounded-full blur-3xl"></div>
+      </div>
 
-        <div className="container mx-auto px-4 sm:px-6 md:px-6 lg:px-8 relative z-10">
-          {/* Section Header */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Header (Dianimasikan) */}
+        <ScrollReveal>
           <div className="text-center mb-8 sm:mb-12 md:mb-16 space-y-3 sm:space-y-4">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
               Apa Kata&nbsp;
@@ -95,9 +144,10 @@ export default function Testimoni() {
               Beberapa klien telah merasakan manfaat dan benefit dari layanan kami
             </p>
           </div>
+        </ScrollReveal>
 
-          {/* Testimonial Carousel */}
-          <div className="relative max-w-4xl mx-auto">
+        {/* Testimonial Carousel (Dianimasikan dengan delay) */}
+        <ScrollReveal delay={200} className="relative max-w-4xl mx-auto">
             {/* Testimonial Card */}
             <div className="overflow-hidden" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
               <div
@@ -175,8 +225,9 @@ export default function Testimoni() {
                 <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
-          </div>
-        </div>
-      </section>
-    )
-  }
+        </ScrollReveal>
+
+      </div>
+    </section>
+  )
+}
