@@ -22,7 +22,7 @@ const teamMembers: TeamMember[] = [
   { id: 5, name: "Bayu Adi C", role: "CFO", image: "/team/bayu.png" },
   { id: 6, name: "Insan Nur R", role: "CMO", image: "/team/insan.png" },
   { id: 7, name: "Jakfan Adbar F", role: "VP Marketing", image: "/team/jakfan.png" },
-  { id: 8, name: "Andhika Nuril A", role: "--", image: "/team/dhika.jpg" },
+  { id: 8, name: "Andhika Nuril A", role: "VP CS", image: "/team/dhika.jpg" },
 ];
 
 // --- Variabel Animasi ---
