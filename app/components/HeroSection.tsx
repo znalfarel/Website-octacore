@@ -5,28 +5,26 @@ import { Code, Zap, PenTool, ShoppingCart, Target, Binoculars, Wrench } from "lu
 import { useEffect, useRef, useState, ReactNode } from "react"; // Tambahkan ReactNode
 import Link from "next/link";
 
-// --- INTERFACE UNTUK TYPESCRIPT ---
+
 interface ScrollRevealProps {
   children: ReactNode;
   delay?: number;
   className?: string;
 }
 
-// --- KOMPONEN TAMBAHAN: UNTUK ANIMASI SCROLL (REUSABLE) ---
 const ScrollReveal = ({ children, delay = 0, className = "" }: ScrollRevealProps) => {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null); // Tambahkan tipe HTMLDivElement
+  const ref = useRef<HTMLDivElement>(null); 
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Jika elemen masuk viewport, set visible true
         if (entry.isIntersecting) {
           setIsVisible(true);
-          if (ref.current) observer.unobserve(ref.current); // Stop observe agar animasi hanya terjadi sekali
+          if (ref.current) observer.unobserve(ref.current); 
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" } // Trigger sedikit sebelum elemen penuh terlihat
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
     );
 
     if (ref.current) {
@@ -44,9 +42,9 @@ const ScrollReveal = ({ children, delay = 0, className = "" }: ScrollRevealProps
       className={`transition-all duration-1000 ease-[cubic-bezier(0.17,0.55,0.55,1)] transform ${
         isVisible 
           ? "opacity-100 translate-y-0" 
-          : "opacity-0 translate-y-12" // Posisi awal turun 12 unit
+          : "opacity-0 translate-y-12" 
       } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }} // Delay untuk efek "1 per 1"
+      style={{ transitionDelay: `${delay}ms` }} 
     >
       {children}
     </div>
@@ -62,11 +60,10 @@ export default function HeroSection() {
     team: 0,
   });
 
-  // Tambahkan tipe HTMLDivElement
+
   const statsRef = useRef<HTMLDivElement>(null); 
   const hasAnimated = useRef(false);
 
-  // Tambahkan tipe string pada parameter
   const handleSmoothScroll = (sectionId: string) => { 
     const element = document.querySelector(sectionId);
     if (element) {
@@ -77,7 +74,6 @@ export default function HeroSection() {
     }
   };
 
-  // Tambahkan tipe number pada parameter (meskipun fungsi ini tidak dipanggil langsung di render, baik untuk type safety)
   const animateCounter = (target: number, duration: number = 2000) => {
     const steps = 60;
     const stepDuration = duration / steps;
@@ -96,7 +92,6 @@ export default function HeroSection() {
     return timer;
   };
 
-  // Intersection Observer for scroll trigger
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -182,21 +177,21 @@ export default function HeroSection() {
             {/* LEFT CONTENT */}
             <div className="space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8 order-2 lg:order-1 pt-6 sm:pt-0">
 
-              {/* Main Heading - Delay 0ms */}
+              {/* Main Heading */}
               <ScrollReveal>
                 <h1 className="font-sora text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-extrabold leading-tight sm:leading-snug md:leading-snug lg:leading-tight mb-2 sm:mb-3 bg-gradient-to-r from-white via-pink-100 to-purple-200 bg-clip-text text-transparent">
                   Satu Platform Berjuta Solusi
                 </h1>
               </ScrollReveal>
 
-              {/* Description - Delay 200ms */}
+              {/* Description */}
               <ScrollReveal delay={200}>
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl leading-relaxed sm:leading-relaxed md:leading-relaxed">
                     Buat harimu menjadi mudah dengan menggunakan layanan kami yang terpercaya dan inovatif
                 </p>
               </ScrollReveal>
 
-              {/* CTA Buttons - Delay 400ms */}
+              {/* CTA Buttons */}
               <ScrollReveal delay={400}>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5 lg:gap-6 pt-2 sm:pt-4 md:pt-6 lg:pt-8">
                     <Link href="/dashboard">
@@ -214,7 +209,7 @@ export default function HeroSection() {
               </ScrollReveal>
             </div>
 
-            {/* RIGHT IMAGE / ILLUSTRATION - Delay 200ms */}
+            {/* RIGHT IMAGE  */}
             <div className="flex justify-center items-center order-1 lg:order-2 mb-4 sm:mb-6 md:mb-8 lg:mb-0">
                <ScrollReveal delay={200} className="w-full flex justify-center">
                   <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl">
@@ -274,7 +269,7 @@ export default function HeroSection() {
                 </p>
               </ScrollReveal>
 
-              {/* Values - Muncul 1 per 1 */}
+              {/* Values */}
               <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-6 pt-2 sm:pt-3 md:pt-4 lg:pt-4">
                 <ScrollReveal delay={300}>
                   <div>
@@ -314,7 +309,7 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* Right Stats - Box Muncul 1 per 1 (Angka tetap animasi) */}
+            {/* Right Stats */}
             <div ref={statsRef} className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
               <ScrollReveal delay={200} className="h-full">
                 <div className="h-full p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-blue-900/30 to-slate-900/30 border border-blue-500/30 text-center hover:border-blue-500/60 hover:bg-blue-900/40 transition duration-300">
@@ -373,13 +368,13 @@ export default function HeroSection() {
                 </div>
             </ScrollReveal>
 
-            {/* MISI - Delay sedikit agar muncul setelah Visi */}
+            {/* MISI */}
             <ScrollReveal delay={200}>
                 <div className="space-y-3 sm:space-y-4 md:space-y-4 lg:space-y-4 p-5 sm:p-6 md:p-7 lg:p-10 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-purple-900/30 to-purple-900/10 border border-purple-500/30 hover:border-purple-500/60 transition duration-300 group h-full">
                 <div className="w-10 sm:w-12 md:w-12 lg:w-14 h-10 sm:h-12 md:h-12 lg:h-14 rounded-lg bg-purple-500/20 border border-purple-500/50 flex items-center justify-center group-hover:bg-purple-500/30 transition">
                     <Target className="w-5 sm:w-6 md:w-6 lg:w-7 h-5 sm:h-6 md:h-6 lg:h-7 text-purple-400" />
                 </div>
-                <h3 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold">Misi Kami</h3>
+                <h3 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold">Misi</h3>
                 <ul className="space-y-2 sm:space-y-2.5 md:space-y-2.5 lg:space-y-3 text-gray-300 text-sm sm:text-base md:text-base lg:text-lg">
                     <li className="flex items-start gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3">
                     <span className="text-purple-400 mt-0.5 sm:mt-0.5 font-bold flex-shrink-0">•</span>
@@ -420,7 +415,7 @@ export default function HeroSection() {
             </ScrollReveal>
           </div>
 
-          {/* Services Grid - Muncul Berurutan */}
+          {/* Services Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
             {/* Service Card 1 */}
             <ScrollReveal delay={0} className="h-full">
@@ -437,7 +432,7 @@ export default function HeroSection() {
                 </div>
             </ScrollReveal>
 
-            {/* Service Card 2 - Delay bertambah */}
+            {/* Service Card 2 */}
             <ScrollReveal delay={200} className="h-full">
                 <div className="group h-full p-5 sm:p-6 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-pink-900/20 to-slate-900/50 border border-pink-500/30 hover:border-pink-500/60 hover:bg-pink-900/30 transition duration-300 cursor-pointer">
                 <div className="w-10 sm:w-11 md:w-12 lg:w-14 h-10 sm:h-11 md:h-12 lg:h-14 rounded-lg bg-pink-500/20 border border-pink-500/50 flex items-center justify-center mb-4 sm:mb-5 md:mb-5 lg:mb-6 group-hover:scale-110 transition">
@@ -452,7 +447,7 @@ export default function HeroSection() {
                 </div>
             </ScrollReveal>
 
-            {/* Service Card 3 - Delay bertambah */}
+            {/* Service Card 3 */}
             <ScrollReveal delay={400} className="h-full">
                 <div className="group h-full p-5 sm:p-6 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-linear-to-br from-purple-900/20 to-slate-900/50 border border-purple-500/30 hover:border-purple-500/60 hover:bg-purple-900/30 transition duration-300 cursor-pointer">
                 <div className="w-10 sm:w-11 md:w-12 lg:w-14 h-10 sm:h-11 md:h-12 lg:h-14 rounded-lg bg-purple-500/20 border border-purple-500/50 flex items-center justify-center mb-4 sm:mb-5 md:mb-5 lg:mb-6 group-hover:scale-110 transition">
@@ -467,7 +462,7 @@ export default function HeroSection() {
                 </div>
             </ScrollReveal>
 
-            {/* Service Card 4 - Delay bertambah */}
+            {/* Service Card 4 */}
             <ScrollReveal delay={600} className="h-full">
                 <div className="group h-full p-5 sm:p-6 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-2xl bg-gradient-to-br from-cyan-900/20 to-slate-900/50 border border-cyan-500/30 hover:border-cyan-500/60 hover:bg-cyan-900/30 transition duration-300 cursor-pointer">
                 <div className="w-10 sm:w-11 md:w-12 lg:w-14 h-10 sm:h-11 md:h-12 lg:h-14 rounded-lg bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center mb-4 sm:mb-5 md:mb-5 lg:mb-6 group-hover:scale-110 transition">
