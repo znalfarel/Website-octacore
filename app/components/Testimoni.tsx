@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef, ReactNode } from "react";
 import { ChevronRight, ChevronLeft, Star } from "lucide-react";
 
-// --- 1. KOMPONEN ANIMASI SCROLL (ScrollReveal) ---
 interface ScrollRevealProps {
   children: ReactNode;
   delay?: number;
@@ -49,7 +48,7 @@ const ScrollReveal = ({ children, delay = 0, className = "" }: ScrollRevealProps
   );
 };
 
-// --- 2. KOMPONEN UTAMA (TESTIMONI) ---
+// --- KOMPONEN UTAMA (TESTIMONI) ---
 export default function Testimoni() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -131,7 +130,7 @@ export default function Testimoni() {
 
       <div className="container mx-auto px-4 sm:px-6 md:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header (Dianimasikan) */}
+        {/* Section Header */}
         <ScrollReveal>
           <div className="text-center mb-8 sm:mb-12 md:mb-16 space-y-3 sm:space-y-4">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
@@ -146,7 +145,7 @@ export default function Testimoni() {
           </div>
         </ScrollReveal>
 
-        {/* Testimonial Carousel (Dianimasikan dengan delay) */}
+        {/* Testimonial Carousel */}
         <ScrollReveal delay={200} className="relative max-w-4xl mx-auto">
             {/* Testimonial Card */}
             <div className="overflow-hidden" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>

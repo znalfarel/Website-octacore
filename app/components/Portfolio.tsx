@@ -203,7 +203,7 @@ const Portfolio: React.FC = () => {
           </ScrollReveal>
 
           <ScrollReveal delay={200}>
-            <p className="mt-3 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
               Berbagai macam project unggulan kami tersedia disini
             </p>
           </ScrollReveal>

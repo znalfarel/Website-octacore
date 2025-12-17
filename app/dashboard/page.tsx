@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link'; // 1. Import Link
 import {
   Wrench,
   Video,
@@ -18,6 +19,7 @@ interface ServiceItem {
   icon: LucideIcon;
   label: string;
   color: 'blue' | 'green' | 'red' | 'purple';
+  href: string; // 2. Menambahkan properti href untuk link tujuan
 }
 
 interface BannerItem {
@@ -53,12 +55,13 @@ const BANNER_ITEMS: BannerItem[] = [
   },
 ];
 
-// --- DATA LAYANAN ---
+// --- DATA LAYANAN (UPDATED) ---
+// 3. Menambahkan href (ganti url sesuai route halaman Anda)
 const FEATURED_SERVICES: ServiceItem[] = [
-  { id: 1, title: 'Service Laptop', icon: Wrench, label: 'BERGARANSI', color: 'blue' },
-  { id: 2, title: 'Editing Video & Foto', icon: Video, label: 'REVISI UNLIMITED', color: 'green' },
-  { id: 3, title: 'Pembuatan Website', icon: Code, label: 'GRATIS HOSTING', color: 'purple' },
-  { id: 4, title: 'Joki Word & Excel', icon: Edit3, label: 'TERMURAH', color: 'red' },
+  { id: 1, title: 'Service Laptop', icon: Wrench, label: 'BERGARANSI', color: 'blue', href: '/serviceLaptop' },
+  { id: 2, title: 'Editing Video & Foto', icon: Video, label: 'REVISI UNLIMITED', color: 'green', href: '/services/editing' },
+  { id: 3, title: 'Pembuatan Website', icon: Code, label: 'GRATIS HOSTING', color: 'purple', href: '/services/website' },
+  { id: 4, title: 'Joki Word & Excel', icon: Edit3, label: 'TERMURAH', color: 'red', href: '/services/joki' },
 ];
 
 // --- DATA HARGA LAYANAN PREMIUM ---
@@ -137,15 +140,18 @@ const BannerCarousel: React.FC = () => {
   );
 };
 
-// --- KOMPONEN KARTU LAYANAN ---
+// --- KOMPONEN KARTU LAYANAN (UPDATED) ---
 const ServiceCard: React.FC<ServiceItem & { isFeatured?: boolean }> = ({
   title,
   icon: Icon,
   label,
   color,
+  href, // Menerima props href
   isFeatured = false,
 }) => {
-  const baseClasses = 'relative rounded-xl transition duration-300 transform hover:scale-[1.03] active:scale-[0.98] cursor-pointer';
+  // Pindahkan cursor-pointer ke Link atau biarkan di sini, 
+  // tapi Link membutuhkan struktur block agar area klik luas.
+  const baseClasses = 'relative rounded-xl transition duration-300 transform hover:scale-[1.03] active:scale-[0.98] cursor-pointer h-full w-full';
   
   const colorMap = {
     blue: { bg: 'bg-blue-50', text: 'text-blue-600', tagBg: 'bg-blue-500' },
@@ -160,19 +166,22 @@ const ServiceCard: React.FC<ServiceItem & { isFeatured?: boolean }> = ({
     : `bg-white shadow-md p-3 flex flex-col items-center justify-center text-center ${baseClasses}`;
 
   return (
-    <div className={cardClasses}>
-      <div className="absolute top-0 left-0 -mt-1 -ml-1">
-        <span className={`${styles.tagBg} text-white text-[10px] font-bold px-2 py-0.5 rounded-br-lg rounded-tl-xl shadow-md uppercase tracking-wider`}>
-          {label}
-        </span>
-      </div>
-      
-      <div className={`${styles.bg} p-3 rounded-full mb-2`}>
-        <Icon className={`h-7 w-7 ${styles.text}`} />
-      </div>
+    // 4. Membungkus seluruh kartu dengan Link
+    <Link href={href} className="block w-full h-full">
+      <div className={cardClasses}>
+        <div className="absolute top-0 left-0 -mt-1 -ml-1">
+          <span className={`${styles.tagBg} text-white text-[10px] font-bold px-2 py-0.5 rounded-br-lg rounded-tl-xl shadow-md uppercase tracking-wider`}>
+            {label}
+          </span>
+        </div>
+        
+        <div className={`${styles.bg} p-3 rounded-full mb-2`}>
+          <Icon className={`h-7 w-7 ${styles.text}`} />
+        </div>
 
-      <p className={`text-sm font-semibold mt-1 text-gray-800 ${isFeatured ? 'text-base' : 'text-sm'}`}>{title}</p>
-    </div>
+        <p className={`text-sm font-semibold mt-1 text-gray-800 ${isFeatured ? 'text-base' : 'text-sm'}`}>{title}</p>
+      </div>
+    </Link>
   );
 };
 
@@ -204,15 +213,12 @@ const ServiceSection: React.FC<{ title: string; subtitle: string; services: Serv
   );
 };
 
-// --- KOMPONEN KARTU HARGA PREMIUM (UPDATED) ---
+// --- KOMPONEN KARTU HARGA PREMIUM ---
 const PremiumCard: React.FC<PremiumService> = ({ name, price, period, icon, logo, inStock }) => {
   
-  // Logic Styling Badge Stok
   const stockText = inStock ? 'Stok Ada' : 'Stok Habis';
-  // Jika stok ada = Background Hijau, Jika habis = Merah
   const badgeBg = inStock ? 'bg-green-600' : 'bg-red-600';
   
-  // Logic Styling Tombol
   const buttonClass = inStock
     ? 'bg-pink-700 hover:bg-pink-800 text-white'
     : 'bg-gray-400 cursor-not-allowed text-gray-100';
@@ -221,12 +227,6 @@ const PremiumCard: React.FC<PremiumService> = ({ name, price, period, icon, logo
   return (
     <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 p-4 border border-gray-200 flex flex-col items-center text-center relative">
       
-      {/* UPDATE: Indikator Stok 
-          - Border hitam (border-black)
-          - Background warna sesuai stok (bg-green-600 / bg-red-600)
-          - Teks putih (text-white)
-          - Lampu putih (bg-white) agar terlihat di background warna
-      */}
       <div className={`absolute top-2 right-2 flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-black shadow-sm ${badgeBg}`}>
         <span className="h-2 w-2 rounded-full animate-pulse bg-white"></span>
         <span className="text-[10px] font-bold text-white uppercase tracking-wide">
@@ -235,7 +235,7 @@ const PremiumCard: React.FC<PremiumService> = ({ name, price, period, icon, logo
       </div>
 
       {logo ? (
-        <div className="relative w-16 h-16 mb-3 mt-4"> {/* Ditambah margin top sedikit agar tidak menabrak label stok */}
+        <div className="relative w-16 h-16 mb-3 mt-4"> 
           <Image
             src={logo}
             alt={name}
