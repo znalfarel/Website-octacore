@@ -150,7 +150,7 @@ Mohon konfirmasi mengenai ketersediaan slot dan jadwal pengerjaan. Terima kasih.
             transition={{ duration: 0.6 }}
           >
             
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
+            <h1 className="mt-10 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
               Rawat Laptopmu <br className="hidden sm:block" /> Tanpa Drama.
             </h1>
 
