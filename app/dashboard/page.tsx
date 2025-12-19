@@ -12,7 +12,7 @@ import {
   LucideIcon
 } from 'lucide-react';
 
-// --- TIPE DATA (TIDAK BERUBAH) ---
+// --- TIPE DATA ---
 interface ServiceItem {
   id: number;
   title: string;
@@ -28,6 +28,18 @@ interface BannerItem {
   subtitle: string;
   image: string;
   buttonText: string;
+}
+
+// Update Interface: Menambahkan slug, price opsional (tidak ditampilkan)
+interface PremiumService {
+  id: number;
+  name: string;
+  price?: string; 
+  period?: string;
+  icon: string;
+  logo?: string;
+  inStock: boolean;
+  slug: string; // Properti baru untuk link
 }
 
 // --- DATA BANNER CAROUSEL ---
@@ -63,26 +75,16 @@ const FEATURED_SERVICES: ServiceItem[] = [
   { id: 4, title: 'Joki Tugas', icon: Edit3, label: 'KILAT', color: 'red', href: '/services/joki' },
 ];
 
-// --- DATA PREMIUM ---
-interface PremiumService {
-  id: number;
-  name: string;
-  price: string;
-  period: string;
-  icon: string;
-  logo?: string;
-  inStock: boolean;
-}
-
+// --- DATA PREMIUM (Updated dengan slug) ---
 const PREMIUM_SERVICES: PremiumService[] = [
-  { id: 1, name: 'Netflix 4K', price: 'Rp 35rb', period: '/bln', icon: '🎬', logo: '/netflix.png', inStock: true },
-  { id: 2, name: 'Spotify Ind', price: 'Rp 20rb', period: '/bln', icon: '🎵', logo: '/spotify.png', inStock: true },
-  { id: 3, name: 'Canva Pro', price: 'Rp 15rb', period: '/bln', icon: '🎨', logo: '/canva.webp', inStock: false }, // Stok Habis
-  { id: 4, name: 'HBO Go', price: 'Rp 25rb', period: '/bln', icon: '📺', logo: '/hbo.png', inStock: true },
-  { id: 5, name: 'Youtube Prem', price: 'Rp 10rb', period: '/bln', icon: '▶️', logo: '/yt.png', inStock: false }, // Stok Habis
-  { id: 6, name: 'CapCut Pro', price: 'Rp 15rb', period: '/bln', icon: '✂️', logo: '/Capcut.png', inStock: true },
-  { id: 7, name: 'Viu Private', price: 'Rp 12rb', period: '/bln', icon: '🎭', logo: '/viu.png', inStock: true },
-  { id: 8, name: 'iQIYI VIP', price: 'Rp 15rb', period: '/bln', icon: '🎞️', logo: '/iqiyi.webp', inStock: true },
+  { id: 1, name: 'Netflix 4K', price: 'Rp 35rb', period: '/bln', icon: '🎬', logo: '/netflix.png', inStock: true, slug: 'netflix-4k' },
+  { id: 2, name: 'Spotify Ind', price: 'Rp 20rb', period: '/bln', icon: '🎵', logo: '/spotify.png', inStock: true, slug: 'spotify' },
+  { id: 3, name: 'Canva Pro', price: 'Rp 15rb', period: '/bln', icon: '🎨', logo: '/canva.webp', inStock: false, slug: 'canva-pro' },
+  { id: 4, name: 'HBO Go', price: 'Rp 25rb', period: '/bln', icon: '📺', logo: '/hbo.png', inStock: true, slug: 'hbo-go' },
+  { id: 5, name: 'Youtube Prem', price: 'Rp 10rb', period: '/bln', icon: '▶️', logo: '/yt.png', inStock: false, slug: 'youtube-premium' },
+  { id: 6, name: 'CapCut Pro', price: 'Rp 15rb', period: '/bln', icon: '✂️', logo: '/Capcut.png', inStock: true, slug: 'capcut-pro' },
+  { id: 7, name: 'Viu Private', price: 'Rp 12rb', period: '/bln', icon: '🎭', logo: '/viu.png', inStock: true, slug: 'viu-private' },
+  { id: 8, name: 'iQIYI VIP', price: 'Rp 15rb', period: '/bln', icon: '🎞️', logo: '/iqiyi.webp', inStock: true, slug: 'iqiyi-vip' },
 ];
 
 // --- COMPONENTS ---
@@ -105,7 +107,7 @@ const BannerCarousel: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % BANNER_ITEMS.length);
-    }, 5000);
+        }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -134,7 +136,7 @@ const BannerCarousel: React.FC = () => {
       <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 sm:p-12 pb-10 sm:justify-center sm:items-start sm:max-w-xl">
         <div className="animate-fade-in-up">
            <span className="inline-block px-3 py-1 mb-3 text-[10px] sm:text-xs font-bold tracking-wider text-purple-300 uppercase bg-purple-500/20 rounded-full border border-purple-500/30 backdrop-blur-md">
-              Promo Spesial
+             Promo Spesial
           </span>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white mb-2 sm:mb-4 leading-tight drop-shadow-lg">
             {currentBanner.title}
@@ -195,14 +197,15 @@ const ServiceCard: React.FC<ServiceItem> = ({ title, icon: Icon, label, color, h
   );
 };
 
-// --- PERUBAHAN UTAMA ADA DI SINI (PremiumCard) ---
-const PremiumCard: React.FC<PremiumService> = ({ name, price, period, logo, icon, inStock }) => {
+// --- MODIFIED PREMIUM CARD ---
+// Harga dihapus, Tombol diganti Link
+const PremiumCard: React.FC<PremiumService> = ({ name, logo, icon, inStock, slug }) => {
   return (
-    <div className={`relative flex flex-col p-4 bg-slate-900 rounded-2xl border border-slate-800 transition-all duration-300 ${inStock ? 'hover:border-slate-600 hover:shadow-xl' : 'opacity-70'}`}>
+    <div className={`relative flex flex-col p-4 bg-slate-900 rounded-2xl border border-slate-800 transition-all duration-300 hover:border-slate-600 hover:shadow-xl group`}>
       
       {/* Header: Logo & Status */}
       <div className="flex justify-between items-start mb-3">
-        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-slate-800 flex items-center justify-center overflow-hidden border border-slate-700">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-slate-800 flex items-center justify-center overflow-hidden border border-slate-700 group-hover:border-purple-500/50 transition-colors">
           {logo ? (
             <div className="relative w-full h-full">
                 <Image src={logo} alt={name} fill className="object-cover" />
@@ -214,14 +217,11 @@ const PremiumCard: React.FC<PremiumService> = ({ name, price, period, logo, icon
         
         {/* Status Badge */}
         {inStock ? (
-             // Status READY (Hijau berkedip)
              <div className="flex items-center gap-1 bg-green-500/10 px-2 py-1 rounded-full border border-green-500/20">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                 <span className="text-[10px] font-bold text-green-400">READY</span>
              </div>
         ) : (
-            // Status HABIS (Merah berkedip - DIPERBAIKI)
-            // Menggunakan struktur flex yang sama dengan READY agar presisi
             <div className="flex items-center gap-1 bg-red-500/10 px-2 py-1 rounded-full border border-red-500/20">
                 <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
                 <span className="text-[10px] font-bold text-red-400 tracking-wider">HABIS</span>
@@ -229,28 +229,24 @@ const PremiumCard: React.FC<PremiumService> = ({ name, price, period, logo, icon
         )}
       </div>
 
-      {/* Content */}
-      <div className="flex-1 mb-3">
-        <h3 className="text-sm font-semibold text-slate-100 line-clamp-1">{name}</h3>
-        <div className="flex items-baseline gap-1 mt-1">
-          <span className="text-lg font-bold text-white">{price}</span>
-          <span className="text-xs text-slate-500">{period}</span>
-        </div>
+      {/* Content: Nama App & Teaser */}
+      <div className="flex-1 mb-4">
+        <h3 className="text-sm sm:text-base font-bold text-slate-100 line-clamp-1 group-hover:text-purple-400 transition-colors">
+            {name}
+        </h3>
+        <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+          Cek detail paket, varian durasi, dan promo terbaru disini.
+        </p>
       </div>
 
-      {/* Button Action */}
-      <button 
-        disabled={!inStock}
-        className={`w-full py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all active:scale-95
-        ${inStock 
-            ? 'bg-slate-100 text-slate-900 hover:bg-purple-500 hover:text-white' 
-            : 'bg-slate-800 text-slate-500 cursor-not-allowed'
-        }`}
+      {/* Button Action: Link ke Halaman Detail */}
+      <Link 
+        href={`/product/${slug}`} 
+        className="w-full py-2.5 rounded-lg text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all active:scale-95 bg-slate-800 text-slate-300 hover:bg-purple-600 hover:text-white hover:shadow-lg hover:shadow-purple-500/20 border border-slate-700 hover:border-purple-500"
       >
-        {inStock ? (
-            <>Beli</>
-        ) : 'Habis'}
-      </button>
+        Selengkapnya
+        <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
+      </Link>
 
     </div>
   );
@@ -301,9 +297,6 @@ export default function HomePage() {
                         Harga pelajar, kualitas sultan. Legal dan bergaransi.
                     </p>
                  </div>
-                 <Link href="/all-products" className="text-purple-400 text-sm font-semibold flex items-center gap-1 hover:underline decoration-purple-500/50 underline-offset-4">
-                    Lihat Semua <ChevronRight className="w-4 h-4" />
-                 </Link>
             </div>
          
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
