@@ -40,7 +40,7 @@ export default function HBOPricingPage() {
       status: "ready", 
       features: ["Kualitas HD", "1 Device Streaming", "Akun dari Seller", "Garansi Full Durasi"],
       options: [
-        { duration: "1 Bulan", price: "Rp 15.000" }, //
+        { duration: "1 Bulan", price: "Rp 28.000" }, //
       ]
     },
     {
@@ -52,7 +52,7 @@ export default function HBOPricingPage() {
       status: "ready", 
       features: ["Kualitas 4K UHD", "Dolby Atmos Audio", "Prioritas Login", "Login TV (2 Slot)"],
       options: [
-        { duration: "1 Bulan", price: "Rp 18.000", bestValue: true }, //
+        { duration: "1 Bulan", price: "Rp 30.000", bestValue: true }, //
       ]
     },
     {
@@ -64,7 +64,7 @@ export default function HBOPricingPage() {
       status: "ready", 
       features: ["Privasi Total", "Support Smart TV", "Bebas Atur Profil", "Akun dari Seller"],
       options: [
-        { duration: "1 Bulan", price: "Rp 56.000" }, //
+        { duration: "1 Bulan", price: "Rp 100.000" }, //
       ]
     },
     {
@@ -76,7 +76,7 @@ export default function HBOPricingPage() {
       status: "low", 
       features: ["4K UHD & Dolby Vision", "100 Downloads", "Privasi Total", "Support All Devices"],
       options: [
-        { duration: "1 Bulan", price: "Rp 90.000", bestValue: true }, //
+        { duration: "1 Bulan", price: "Rp 150.000", bestValue: true }, //
       ]
     }
   ];

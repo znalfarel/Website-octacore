@@ -40,8 +40,8 @@ export default function YoutubePricingPage() {
       status: "ready", 
       features: ["Sistem Invite Email", "Tanpa Iklan (Ad-free)", "Background Play", "YouTube Music Premium"],
       options: [
-        { duration: "1 Bulan", price: "Rp 1.500" },
-        { duration: "2 Bulan", price: "Rp 3.000", bestValue: true },
+        { duration: "1 Bulan", price: "Rp 8.000" },
+        { duration: "2 Bulan", price: "Rp 14.000", bestValue: true },
       ]
     },
     {
@@ -53,9 +53,9 @@ export default function YoutubePricingPage() {
       status: "ready", 
       features: ["Akun Sendiri (Email Cust)", "Opsional: Akun Seller (+4rb)", "Download Offline", "YouTube Music Premium"],
       options: [
-        { duration: "1 Bulan", price: "Rp 6.000" },
-        { duration: "3 Bln (No Garansi)", price: "Rp 17.000" },
-        { duration: "3 Bln (Full Garansi)", price: "Rp 30.000", bestValue: true },
+        { duration: "1 Bulan", price: "Rp 15.000" },
+        { duration: "3 Bln (No Garansi)", price: "Rp 40.000" },
+        { duration: "3 Bln (Full Garansi)", price: "Rp 55.000", bestValue: true },
       ]
     }
   ];

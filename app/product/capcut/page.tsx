@@ -40,7 +40,7 @@ export default function CapCutPricingPage() {
       status: "ready", 
       features: ["Hapus Watermark", "Efek & Filter Pro", "Login 1 Device", "Garansi Aktif"],
       options: [
-        { duration: "1 Bulan (3 User)", price: "Rp 6.000", bestValue: true }, //
+        { duration: "1 Bulan (3 User)", price: "Rp 15.000", bestValue: true }, //
       ]
     },
     {
@@ -52,9 +52,9 @@ export default function CapCutPricingPage() {
       status: "ready", 
       features: ["Unlock Semua Fitur Pro", "Cloud Storage Aman", "Bebas Watermark", "Support 4K Export"],
       options: [
-        { duration: "7 Hari (Private)", price: "Rp 5.000" }, //
-        { duration: "1 Bulan (Email Sendiri)", price: "Rp 10.000", bestValue: true }, //
-        { duration: "1 Bulan (Akun Seller)", price: "Rp 12.000" }, // "priv acc b" diasumsikan Akun Baru/Seller
+        { duration: "7 Hari (Private)", price: "Rp 15.000" }, //
+        { duration: "1 Bulan (Email Sendiri)", price: "Rp 25.000", bestValue: true }, //
+        { duration: "1 Bulan (Akun Seller)", price: "Rp 22.000" }, // "priv acc b" diasumsikan Akun Baru/Seller
       ]
     }
   ];

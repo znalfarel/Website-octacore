@@ -40,9 +40,9 @@ export default function ViuPricingPage() {
       status: "ready", 
       features: ["Akun dari Seller", "Private Account", "Akses Konten Premium", "Download Offline"],
       options: [
-        { duration: "1 Bulan", price: "Rp 500" }, //
-        { duration: "6 Bulan", price: "Rp 3.000" }, //
-        { duration: "1 Tahun", price: "Rp 5.000", bestValue: true }, //
+        { duration: "1 Bulan", price: "Rp 7.000" }, //
+        { duration: "6 Bulan", price: "Rp 25.000" }, //
+        { duration: "1 Tahun", price: "Rp 30.000", bestValue: true }, //
       ]
     },
     {
@@ -54,9 +54,9 @@ export default function ViuPricingPage() {
       status: "ready", 
       features: ["Garansi Full Durasi", "Akun dari Seller", "Anti Hold/Limit", "Support All Devices"],
       options: [
-        { duration: "1 Bulan", price: "Rp 2.000" }, //
-        { duration: "6 Bulan", price: "Rp 3.000" }, //
-        { duration: "1 Tahun", price: "Rp 5.000", bestValue: true }, //
+        { duration: "1 Bulan", price: "Rp 14.000" }, //
+        { duration: "6 Bulan", price: "Rp 30.000" }, //
+        { duration: "1 Tahun", price: "Rp 40.000", bestValue: true }, //
       ]
     },
     {
@@ -68,8 +68,8 @@ export default function ViuPricingPage() {
       status: "ready", 
       features: ["Akses Premium Plus", "Tanpa Iklan", "Kualitas Full HD", "Akun dari Seller"],
       options: [
-        { duration: "1 Bulan (Sharing)", price: "Rp 15.000" }, //
-        { duration: "1 Bulan (Private)", price: "Rp 55.000", bestValue: true }, //
+        { duration: "1 Bulan (Sharing)", price: "Rp 30.000" }, //
+        { duration: "1 Bulan (Private)", price: "Rp 105.000", bestValue: true }, //
       ]
     }
   ];

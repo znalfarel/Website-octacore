@@ -40,9 +40,9 @@ export default function IQiyiPricingPage() {
       status: "ready", 
       features: ["VIP Standard Content", "Max Login 1 Device", "Resolusi 1080P", "Akun dari Seller"],
       options: [
-        { duration: "1 Bulan", price: "Rp 5.000" }, //
-        { duration: "3 Bulan", price: "Rp 10.000" }, //
-        { duration: "1 Tahun", price: "Rp 11.000", bestValue: true }, //
+        { duration: "1 Bulan", price: "Rp 12.000" }, //
+        { duration: "3 Bulan", price: "Rp 25.000" }, //
+        { duration: "1 Tahun", price: "Rp 40.000", bestValue: true }, //
       ]
     },
     {
@@ -54,8 +54,8 @@ export default function IQiyiPricingPage() {
       status: "ready", 
       features: ["VIP Premium (4K/Dolby)", "Max Login 1 Device", "Akun dari Seller", "Opsi Anti-Limit Tersedia"],
       options: [
-        { duration: "1 Bulan (Premium)", price: "Rp 10.000", bestValue: true }, //
-        { duration: "1 Bulan (Anti-Limit)", price: "Rp 16.000" }, //
+        { duration: "1 Bulan (Premium)", price: "Rp 20.000", bestValue: true }, //
+        { duration: "1 Bulan (Anti-Limit)", price: "Rp 25.000" }, //
       ]
     },
     {
@@ -67,8 +67,8 @@ export default function IQiyiPricingPage() {
       status: "ready", 
       features: ["Private Account (No Sharing)", "Support Multi Device", "Download Offline", "Akun dari Seller"],
       options: [
-        { duration: "1 Bulan (Standard)", price: "Rp 32.000" }, //
-        { duration: "1 Bulan (Premium)", price: "Rp 40.000", bestValue: true }, //
+        { duration: "1 Bulan (Standard)", price: "Rp 50.000" }, //
+        { duration: "1 Bulan (Premium)", price: "Rp 60.000", bestValue: true }, //
       ]
     }
   ];

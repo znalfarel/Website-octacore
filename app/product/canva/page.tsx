@@ -40,11 +40,12 @@ export default function CanvaPricingPage() {
       status: "ready", 
       features: ["Sistem Invite Email", "Unlock Jutaan Aset Pro", "Hapus Background", "Garansi 6 Bulan (1 Thn)"],
       options: [
-        { duration: "1 Hari", price: "Rp 100" },
-        { duration: "1 Minggu", price: "Rp 250" },
-        { duration: "1 Bulan", price: "Rp 500", bestValue: true },
-        { duration: "6 Bulan", price: "Rp 6.000" },
-        { duration: "1 Tahun", price: "Rp 10.000" },
+        
+        { duration: "1 Minggu", price: "Rp 2.500" },
+        { duration: "1 Bulan", price: "Rp 5.000", bestValue: true },
+        { duration: "2 Bulan", price: "Rp 8.000" },
+        { duration: "6 Bulan", price: "Rp 15.000" },
+        { duration: "1 Tahun", price: "Rp 20.000" },
       ]
     },
     {
@@ -56,7 +57,7 @@ export default function CanvaPricingPage() {
       status: "ready", 
       features: ["Fitur Canva for Education", "Garansi 6 Bulan", "Sistem Invite Email", "Legal & Aman"],
       options: [
-        { duration: "Lifetime", price: "Rp 15.000", bestValue: true },
+        { duration: "Lifetime", price: "Rp 30.000", bestValue: true },
       ]
     }
   ];

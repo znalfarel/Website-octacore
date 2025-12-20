@@ -40,8 +40,8 @@ export default function SpotifyPricingPage() {
       status: "ready", 
       features: ["Region Indonesia & US", "Garansi Full Durasi", "Legal & Aman", "Support All Devices"],
       options: [
-        { duration: "1 Bulan", price: "Rp 15.000" },
-        { duration: "2 Bulan", price: "Rp 25.000", bestValue: true },
+        { duration: "1 Bulan", price: "Rp 23.000" },
+        { duration: "2 Bulan", price: "Rp 40.000", bestValue: true },
       ]
     },
     {
@@ -53,9 +53,9 @@ export default function SpotifyPricingPage() {
       status: "ready", 
       features: ["Akun Seller / Replace Mail", "Region Indo & US", "Privasi Penuh", "Anti Back"],
       options: [
-        { duration: "1 Bln (Akun Seller)", price: "Rp 16.000" },
-        { duration: "1 Bln (Replace)", price: "Rp 18.000" },
-        { duration: "3 Bln (No Renew)", price: "Rp 32.000", bestValue: true },
+        { duration: "1 Bln (Akun Seller)", price: "Rp 25.000" },
+        { duration: "1 Bln (Replace)", price: "Rp 30.000" },
+        { duration: "3 Bln (No Renew)", price: "Rp 50.000", bestValue: true },
       ]
     }
   ];
