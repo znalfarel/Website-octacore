@@ -2,8 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { Check, Shield, Zap, ChevronRight, Info, Star } from 'lucide-react';
+import { Check, Shield, Zap, ChevronRight, Star, Palette, GraduationCap, Crown } from 'lucide-react';
 
 // --- Types & Interfaces ---
 
@@ -28,64 +27,36 @@ interface Category {
 
 type SelectionState = Record<string, number>;
 
-export default function NetflixPricingPage() {
+export default function CanvaPricingPage() {
   
-  // --- Data ---
+  // --- Data (Sesuai Image Canva) ---
   const categories: Category[] = [
     {
-      id: "cat_1p1u",
-      name: "Personal",
-      subName: "1 Profil • 1 User",
-      description: "Privasi total. Profil khusus milik Anda sendiri, history aman.",
+      id: "cat_prem_member",
+      name: "Premium Member",
+      subName: "Pro Team Invite",
+      description: "Akses fitur Pro murah meriah via invite email. Pastikan pindah desain ke personal saat durasi habis.",
       isPopular: true,
       status: "ready", 
-      features: ["4K UHD Quality", "Download Offline", "Support Semua Device", "Garansi Full Durasi"],
+      features: ["Sistem Invite Email", "Unlock Jutaan Aset Pro", "Hapus Background", "Garansi 6 Bulan (1 Thn)"],
       options: [
-        { duration: "1 Hari", price: "Rp 4.000" },
-        { duration: "3 Hari", price: "Rp 7.000" },
-        { duration: "7 Hari", price: "Rp 13.000" },
-        { duration: "1 Bulan", price: "Rp 33.000", bestValue: true },
+        { duration: "1 Hari", price: "Rp 100" },
+        { duration: "1 Minggu", price: "Rp 250" },
+        { duration: "1 Bulan", price: "Rp 500", bestValue: true },
+        { duration: "6 Bulan", price: "Rp 6.000" },
+        { duration: "1 Tahun", price: "Rp 10.000" },
       ]
     },
     {
-      id: "cat_1p2u",
-      name: "Sharing",
-      subName: "1 Profil • 2 User",
-      description: "Solusi hemat budget. Satu profil digunakan bersama user lain.",
+      id: "cat_lifetime_edu",
+      name: "Lifetime Edu",
+      subName: "Education Plan",
+      description: "Akun fitur pendidikan durasi panjang. Solusi terbaik untuk jangka panjang tanpa mikir perpanjangan.",
       isPopular: false,
       status: "ready", 
-      features: ["HD/UHD Quality", "Stream Only", "Support HP & Laptop", "Garansi Aktif"],
+      features: ["Fitur Canva for Education", "Garansi 6 Bulan", "Sistem Invite Email", "Legal & Aman"],
       options: [
-        { duration: "1 Hari", price: "Rp 3.000" },
-        { duration: "3 Hari", price: "Rp 6.000" },
-        { duration: "7 Hari", price: "Rp 10.000" },
-        { duration: "1 Bulan", price: "Rp 20.000", bestValue: true },
-      ]
-    },
-    {
-      id: "cat_semi",
-      name: "Semi Private",
-      subName: "High Security",
-      description: "Akun sharing proteksi lebih. Resiko screen limit sangat minim.",
-      isPopular: false,
-      status: "ready",
-      features: ["4K UHD Quality", "Anti Screen Limit", "Login 1 Device", "Priority Support"],
-      options: [
-        { duration: "7 Hari", price: "Rp 20.000" },
-        { duration: "1 Bulan", price: "Rp 40.000", bestValue: true },
-      ]
-    },
-    {
-      id: "cat_priv",
-      name: "Private Account",
-      subName: "Full Access",
-      description: "Akun utuh milik Anda. Bisa buat 5 profil, atur PIN, kontrol penuh.",
-      isPopular: false,
-      status: "ready", 
-      features: ["Email & Password Pribadi", "Bisa Ganti Password", "5 Profil (4K)", "Garansi Uang Kembali"],
-      options: [
-        { duration: "1 Minggu", price: "Rp 70.000" },
-        { duration: "1 Bulan", price: "Rp 150.000", bestValue: true },
+        { duration: "Lifetime", price: "Rp 15.000", bestValue: true },
       ]
     }
   ];
@@ -106,8 +77,8 @@ export default function NetflixPricingPage() {
 
   const getWhatsappLink = (category: Category, selectedOptionIndex: number) => {
     const option = category.options[selectedOptionIndex];
-    const phone = "6287882923273";
-    const message = `Halo Admin, saya ingin order Netflix Premium.\n\n *Paket*: ${category.name} (${category.subName})\n *Durasi*: ${option.duration}\n *Harga*: ${option.price}\n\nMohon info pembayarannya. Terima kasih!`;
+    const phone = "6287882923273"; // Nomor WhatsApp Anda
+    const message = `Halo Admin, saya ingin order Canva Premium.\n\n *Paket*: ${category.name} (${category.subName})\n *Durasi*: ${option.duration}\n *Harga*: ${option.price}\n\nMohon info pembayarannya. Terima kasih!`;
     return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   };
 
@@ -129,28 +100,26 @@ export default function NetflixPricingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-slate-200 font-sans antialiased pb-24 selection:bg-red-500/30 selection:text-red-200 relative overflow-hidden">
+    <div className="min-h-screen bg-[#0e0e1b] text-slate-200 font-sans antialiased pb-24 selection:bg-[#7D2AE8]/30 selection:text-purple-200 relative overflow-hidden">
       
-      {/* --- Ambient Background Effects (Spotlight) --- */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-red-600/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
+      {/* --- Ambient Background Effects (Canva Gradient) --- */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#00C4CC]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#7D2AE8]/10 rounded-full blur-[120px] pointer-events-none" />
       
       {/* Header Section */}
       <header className="pt-20 pb-16 px-6 relative z-10 max-w-7xl mx-auto text-center">
-
         <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6 leading-tight">
-          Nonton Puas, <br className="hidden md:block"/>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-800">Tanpa Batas.</span>
+          Desain Ajaib, <br className="hidden md:block"/>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00C4CC] to-[#7D2AE8]">Tanpa Batas.</span>
         </h1>
-        
         <p className="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed">
-          Layanan premium legal bergaransi. Pilih paketmu, bayar mudah, langsung nonton dalam hitungan menit.
+          Bikin konten profesional makin mudah. Ribuan template premium, hapus background instan, dan aset pro.
         </p>
       </header>
 
       {/* Pricing Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           
           {categories.map((cat) => {
             const selectedIdx = selections[cat.id] ?? 0;
@@ -162,8 +131,8 @@ export default function NetflixPricingPage() {
                 key={cat.id} 
                 className={`group relative flex flex-col h-full rounded-3xl transition-all duration-300 hover:-translate-y-1
                   ${cat.isPopular 
-                    ? 'bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border border-red-500/40 shadow-2xl shadow-red-900/10 z-10 scale-100 lg:scale-105' 
-                    : 'bg-slate-900/40 border border-white/5 hover:bg-slate-900/60 hover:border-white/10 backdrop-blur-sm'
+                    ? 'bg-gradient-to-b from-slate-900 via-slate-900 to-[#120f24] border border-[#7D2AE8]/40 shadow-2xl shadow-purple-900/20 z-10 scale-100' 
+                    : 'bg-[#151525]/80 border border-white/5 hover:bg-[#1e1e30] hover:border-white/10 backdrop-blur-sm'
                   }
                   ${isOutOfStock ? 'opacity-50 grayscale' : ''}
                 `}
@@ -171,26 +140,26 @@ export default function NetflixPricingPage() {
                 {/* Popular Badge */}
                 {cat.isPopular && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
-                    <span className="flex items-center gap-1 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg shadow-red-600/40 tracking-wider">
+                    <span className="flex items-center gap-1 bg-gradient-to-r from-[#00C4CC] to-[#7D2AE8] text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg shadow-purple-600/40 tracking-wider">
                       <Star className="w-3 h-3 fill-white" />
                       TERLARIS
                     </span>
                   </div>
                 )}
 
-                <div className="p-6 md:p-7 flex-1 flex flex-col">
+                <div className="p-6 md:p-8 flex-1 flex flex-col">
                   
                   {/* Header Card */}
-                  <div className="flex justify-between items-start mb-4">
-                     <div className={`p-2.5 rounded-xl ${cat.isPopular ? 'bg-red-500/10 text-red-500' : 'bg-white/5 text-slate-400'}`}>
-                        {cat.name.includes('Sharing') ? <Zap className="w-6 h-6"/> : <Shield className="w-6 h-6"/>}
-                     </div>
-                     <StockIndicator status={cat.status} />
+                  <div className="flex justify-between items-start mb-6">
+                      <div className={`p-3 rounded-xl ${cat.isPopular ? 'bg-[#7D2AE8]/10 text-[#7D2AE8]' : 'bg-white/5 text-slate-400'}`}>
+                         {cat.id === 'cat_prem_member' ? <Crown className="w-6 h-6"/> : <GraduationCap className="w-6 h-6"/>}
+                      </div>
+                      <StockIndicator status={cat.status} />
                   </div>
 
                   <div className="mb-6">
-                    <h3 className="text-xl font-bold text-white mb-1">{cat.name}</h3>
-                    <p className={`text-sm font-medium mb-3 ${cat.isPopular ? 'text-red-400' : 'text-slate-500'}`}>
+                    <h3 className="text-2xl font-bold text-white mb-1">{cat.name}</h3>
+                    <p className={`text-sm font-medium mb-3 ${cat.isPopular ? 'text-[#00C4CC]' : 'text-slate-500'}`}>
                         {cat.subName}
                     </p>
                     <p className="text-xs text-slate-400 leading-relaxed min-h-[40px]">
@@ -202,7 +171,7 @@ export default function NetflixPricingPage() {
                   <ul className="space-y-3 mb-8">
                     {cat.features.map((feat, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <div className={`mt-0.5 p-0.5 rounded-full ${cat.isPopular ? 'bg-red-500/20 text-red-500' : 'bg-slate-800 text-slate-500'}`}>
+                        <div className={`mt-0.5 p-0.5 rounded-full ${cat.isPopular ? 'bg-[#7D2AE8]/20 text-[#7D2AE8]' : 'bg-slate-800 text-slate-500'}`}>
                             <Check className="w-3 h-3" strokeWidth={3} />
                         </div>
                         <span className="text-xs text-slate-300 font-medium">{feat}</span>
@@ -210,7 +179,7 @@ export default function NetflixPricingPage() {
                     ))}
                   </ul>
 
-                  <div className="mt-auto space-y-2.5">
+                  <div className="mt-auto space-y-3">
                     <div className="flex items-center gap-2 mb-2">
                         <div className="h-px bg-white/10 flex-1"></div>
                         <span className="text-[10px] uppercase text-slate-500 font-bold tracking-widest">Pilih Durasi</span>
@@ -225,10 +194,10 @@ export default function NetflixPricingPage() {
                           type="button"
                           onClick={() => isActiveStock && handleSelect(cat.id, idx)}
                           disabled={isOutOfStock}
-                          className={`group/opt w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm border transition-all duration-200 relative overflow-hidden
+                          className={`group/opt w-full flex items-center justify-between px-4 py-3.5 rounded-xl text-sm border transition-all duration-200 relative overflow-hidden
                             ${isSelected 
                                ? (cat.isPopular 
-                                    ? 'bg-red-600/10 border-red-500/50 text-white shadow-[0_0_15px_rgba(220,38,38,0.1)]' 
+                                    ? 'bg-[#7D2AE8]/10 border-[#7D2AE8]/50 text-white shadow-[0_0_15px_rgba(125,42,232,0.1)]' 
                                     : 'bg-white/10 border-white/30 text-white')
                                : 'bg-transparent border-white/5 text-slate-400 hover:border-white/10 hover:bg-white/5'
                             }
@@ -236,17 +205,19 @@ export default function NetflixPricingPage() {
                           `}
                         >
                           {/* Selection Indicator Dot */}
-                          <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-r-full transition-all
-                              ${isSelected ? (cat.isPopular ? 'bg-red-500' : 'bg-slate-200') : 'bg-transparent'}
+                          <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 h-10 rounded-r-full transition-all
+                              ${isSelected ? (cat.isPopular ? 'bg-[#7D2AE8]' : 'bg-slate-200') : 'bg-transparent'}
                           `}></div>
 
-                          <span className={`font-medium ml-2 ${isSelected ? 'text-white' : 'text-slate-400 group-hover/opt:text-slate-300'}`}>
-                            {opt.duration}
-                          </span>
+                          <div className="flex flex-col items-start ml-2">
+                             <span className={`font-medium ${isSelected ? 'text-white' : 'text-slate-400 group-hover/opt:text-slate-300'}`}>
+                                {opt.duration}
+                             </span>
+                          </div>
                           
                           <div className="flex flex-col items-end">
                             {opt.bestValue && isActiveStock && (
-                                <span className="text-[9px] font-bold text-green-400 mb-0.5">HEMAT</span>
+                                <span className="text-[9px] font-bold text-[#00C4CC] mb-0.5">BEST VALUE</span>
                             )}
                             <span className={`font-bold ${isSelected ? 'text-white' : 'text-slate-500 group-hover/opt:text-slate-400'}`}>
                                 {opt.price}
@@ -259,21 +230,21 @@ export default function NetflixPricingPage() {
 
                   {/* CTA Button */}
                   <div className="mt-6">
-                     <Link 
+                      <Link 
                         href={isOutOfStock ? '#' : getWhatsappLink(cat, selectedIdx)}
                         target={isOutOfStock ? '_self' : '_blank'}
                         className={`block w-full ${isOutOfStock ? 'pointer-events-none' : ''}`}
-                     >
-                       <div className={`w-full py-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg
+                      >
+                        <div className={`w-full py-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg
                           ${isOutOfStock 
                             ? 'bg-slate-800 text-slate-500 border border-slate-700 cursor-not-allowed' 
-                            : 'bg-[#E50914] text-white hover:bg-[#c10811] hover:shadow-red-600/20 active:scale-[0.98]'
+                            : 'bg-gradient-to-r from-[#00C4CC] to-[#7D2AE8] text-white hover:shadow-purple-600/20 active:scale-[0.98]'
                           }
                         `}>
-                          {isOutOfStock ? 'Stok Habis' : 'Beli Sekarang'}
+                          {isOutOfStock ? 'Stok Habis' : 'Order via WhatsApp'}
                           {isActiveStock && <ChevronRight className="w-4 h-4" />}
-                       </div>
-                     </Link>
+                        </div>
+                      </Link>
                   </div>
 
                 </div>

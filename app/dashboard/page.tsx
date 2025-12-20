@@ -79,12 +79,12 @@ const FEATURED_SERVICES: ServiceItem[] = [
 const PREMIUM_SERVICES: PremiumService[] = [
   { id: 1, name: 'Netflix 4K', price: 'Rp 35rb', period: '/bln', icon: '🎬', logo: '/netflix.png', inStock: true, slug: 'netflix-4k' },
   { id: 2, name: 'Spotify Ind', price: 'Rp 20rb', period: '/bln', icon: '🎵', logo: '/spotify.png', inStock: true, slug: 'spotify' },
-  { id: 3, name: 'Canva Pro', price: 'Rp 15rb', period: '/bln', icon: '🎨', logo: '/canva.webp', inStock: false, slug: 'canva-pro' },
-  { id: 4, name: 'HBO Go', price: 'Rp 25rb', period: '/bln', icon: '📺', logo: '/hbo.png', inStock: true, slug: 'hbo-go' },
-  { id: 5, name: 'Youtube Prem', price: 'Rp 10rb', period: '/bln', icon: '▶️', logo: '/yt.png', inStock: false, slug: 'youtube-premium' },
-  { id: 6, name: 'CapCut Pro', price: 'Rp 15rb', period: '/bln', icon: '✂️', logo: '/Capcut.png', inStock: true, slug: 'capcut-pro' },
-  { id: 7, name: 'Viu Private', price: 'Rp 12rb', period: '/bln', icon: '🎭', logo: '/viu.png', inStock: true, slug: 'viu-private' },
-  { id: 8, name: 'iQIYI VIP', price: 'Rp 15rb', period: '/bln', icon: '🎞️', logo: '/iqiyi.webp', inStock: true, slug: 'iqiyi-vip' },
+  { id: 3, name: 'Canva Pro', price: 'Rp 15rb', period: '/bln', icon: '🎨', logo: '/canva.webp', inStock: false, slug: 'canva' },
+  { id: 4, name: 'HBO Go', price: 'Rp 25rb', period: '/bln', icon: '📺', logo: '/hbo.png', inStock: true, slug: 'hbo' },
+  { id: 5, name: 'Youtube Prem', price: 'Rp 10rb', period: '/bln', icon: '▶️', logo: '/yt.png', inStock: false, slug: 'youtube' },
+  { id: 6, name: 'CapCut Pro', price: 'Rp 15rb', period: '/bln', icon: '✂️', logo: '/Capcut.png', inStock: true, slug: 'capcut' },
+  { id: 7, name: 'Viu Private', price: 'Rp 12rb', period: '/bln', icon: '🎭', logo: '/viu.png', inStock: true, slug: 'viu' },
+  { id: 8, name: 'iQIYI VIP', price: 'Rp 15rb', period: '/bln', icon: '🎞️', logo: '/iqiyi.webp', inStock: true, slug: 'iqiyi' },
 ];
 
 // --- COMPONENTS ---

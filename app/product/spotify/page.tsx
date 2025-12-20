@@ -1,133 +1,262 @@
-import React from 'react';
+"use client"
+
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { Check, Shield, Zap, ChevronRight, Star, Music, User } from 'lucide-react';
+
+// --- Types & Interfaces ---
+
+type StockStatus = 'ready' | 'low' | 'empty';
+
+interface PricingOption {
+  duration: string;
+  price: string;
+  bestValue?: boolean;
+}
+
+interface Category {
+  id: string;
+  name: string;
+  subName: string;
+  description: string;
+  isPopular: boolean;
+  status: StockStatus;
+  features: string[];
+  options: PricingOption[];
+}
+
+type SelectionState = Record<string, number>;
 
 export default function SpotifyPricingPage() {
-  // Data Paket Spotify (Silakan sesuaikan harga)
-  const categories = [
+  
+  // --- Data (Updated from Image) ---
+  const categories: Category[] = [
     {
-      name: "Fam Plan",
-      description: "Via Invite Link (Email Sendiri)",
-      isPopular: true, // Highlight Best Seller
+      id: "cat_family",
+      name: "Family Plan",
+      subName: "Shared • Hemat",
+      description: "Solusi paling hemat. Join plan resmi region Indonesia & US.",
+      isPopular: true,
+      status: "ready", 
+      features: ["Region Indonesia & US", "Garansi Full Durasi", "Legal & Aman", "Support All Devices"],
       options: [
         { duration: "1 Bulan", price: "Rp 15.000" },
-        { duration: "2 Bulan", price: "Rp 28.000" },
-        { duration: "3 Bulan", price: "Rp 40.000" },
+        { duration: "2 Bulan", price: "Rp 25.000", bestValue: true },
       ]
     },
     {
-      name: "Indiv Plan",
-      description: "Akun Private (Baru/Siap Pakai)",
+      id: "cat_individual",
+      name: "Individual Plan",
+      subName: "Private Account",
+      description: "Akun khusus milik Anda sendiri. Bebas pilih akun dari seller atau replace email sendiri.",
       isPopular: false,
+      status: "ready", 
+      features: ["Akun Seller / Replace Mail", "Region Indo & US", "Privasi Penuh", "Anti Back"],
       options: [
-        { duration: "1 Bulan", price: "Rp 30.000" },
-        { duration: "3 Bulan", price: "Rp 85.000" },
-        { duration: "1 Tahun", price: "Rp 300.000" },
-      ]
-    },
-    {
-      name: "Perpanjang",
-      description: "Perpanjang Akun Lama (Fam Plan)",
-      isPopular: false,
-      options: [
-        { duration: "1 Bulan", price: "Rp 18.000" },
-        { duration: "3 Bulan", price: "Rp 50.000" },
-      ]
-    },
-    {
-      name: "Lifetime",
-      description: "Sekali Bayar (Garansi 6 Bulan)",
-      isPopular: false,
-      options: [
-        { duration: "Akun Baru", price: "Rp 50.000" },
-        { duration: "Akun Lama", price: "Rp 60.000" },
+        { duration: "1 Bln (Akun Seller)", price: "Rp 16.000" },
+        { duration: "1 Bln (Replace)", price: "Rp 18.000" },
+        { duration: "3 Bln (No Renew)", price: "Rp 32.000", bestValue: true },
       ]
     }
   ];
 
+  // --- Logic ---
+  const [selections, setSelections] = useState<SelectionState>(() => {
+    const defaults: SelectionState = {};
+    categories.forEach(cat => {
+      const defaultIndex = cat.options.findIndex(opt => opt.bestValue);
+      defaults[cat.id] = defaultIndex !== -1 ? defaultIndex : 0;
+    });
+    return defaults;
+  });
+
+  const handleSelect = (categoryId: string, optionIndex: number) => {
+    setSelections(prev => ({ ...prev, [categoryId]: optionIndex }));
+  };
+
+  const getWhatsappLink = (category: Category, selectedOptionIndex: number) => {
+    const option = category.options[selectedOptionIndex];
+    const phone = "6287882923273"; // Ganti dengan nomor WhatsApp Anda
+    const message = `Halo Admin, saya ingin order Spotify Premium.\n\n *Paket*: ${category.name} (${category.subName})\n *Opsi*: ${option.duration}\n *Harga*: ${option.price}\n\nMohon info pembayarannya. Terima kasih!`;
+    return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  };
+
+  // --- Components ---
+  const StockIndicator = ({ status }: { status: StockStatus }) => {
+    const config = {
+      ready: { color: 'bg-emerald-500', text: 'Tersedia', bg: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' },
+      low: { color: 'bg-amber-500', text: 'Menipis', bg: 'bg-amber-500/10 border-amber-500/20 text-amber-400' },
+      empty: { color: 'bg-red-500', text: 'Habis', bg: 'bg-red-500/10 border-red-500/20 text-red-400' },
+    };
+    const current = config[status];
+
+    return (
+      <div className={`inline-flex items-center gap-2 px-2.5 py-1 rounded-full border text-[10px] font-semibold uppercase tracking-wider ${current.bg}`}>
+        <span className={`w-1.5 h-1.5 rounded-full ${current.color} ${status === 'ready' ? 'animate-pulse' : ''}`} />
+        {current.text}
+      </div>
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-200 font-sans selection:bg-green-500 selection:text-white pb-20">
+    <div className="min-h-screen bg-[#121212] text-slate-200 font-sans antialiased pb-24 selection:bg-[#1DB954]/30 selection:text-green-200 relative overflow-hidden">
+      
+      {/* --- Ambient Background Effects --- */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#1DB954]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-emerald-600/5 rounded-full blur-[120px] pointer-events-none" />
       
       {/* Header Section */}
-      <div className="max-w-7xl mx-auto pt-16 pb-10 px-6 text-center">
-        <div className="inline-flex items-center justify-center p-4 bg-slate-800 rounded-full mb-6 shadow-lg border border-slate-700">
-           {/* Logo Spotify SVG */}
-           <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="10" fill="#1DB954"/>
-              <path d="M16.438 15.688C16.281 15.938 15.969 16.031 15.719 15.875C13.688 14.625 11.125 14.344 8.219 15.031C7.938 15.094 7.656 14.906 7.594 14.625C7.531 14.344 7.719 14.063 8 14C11.188 13.25 14.031 13.563 16.313 14.969C16.563 15.094 16.625 15.438 16.438 15.688ZM17.656 12.656C17.438 13 17.031 13.125 16.688 12.906C14.063 11.281 10.094 10.813 6.969 11.75C6.594 11.875 6.219 11.656 6.094 11.281C5.969 10.906 6.188 10.531 6.563 10.406C10.094 9.344 14.531 9.875 17.531 11.719C17.875 11.906 17.969 12.344 17.656 12.656ZM17.781 9.625C14.156 7.469 8.938 7.281 5.938 8.188C5.469 8.344 4.969 8.063 4.813 7.594C4.656 7.125 4.938 6.625 5.406 6.469C8.906 5.406 14.656 5.625 18.813 8.094C19.25 8.344 19.375 8.906 19.125 9.313C18.875 9.75 18.25 9.875 17.781 9.625Z" fill="white"/>
-          </svg>
-        </div>
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-          Spotify <span className="text-green-500">Premium</span>
+      <header className="pt-20 pb-16 px-6 relative z-10 max-w-7xl mx-auto text-center">
+        <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6 leading-tight">
+          Musik Hidupmu, <br className="hidden md:block"/>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1DB954] to-emerald-400">Tanpa Gangguan.</span>
         </h1>
-        <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-          Dengarkan musik tanpa iklan. Tersedia paket Family (Invite) dan Individual dengan garansi penuh.
+        <p className="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed">
+          Upgrade ke Premium sekarang. Region Indonesia & US tersedia. Garansi penuh.
         </p>
-      </div>
+      </header>
 
       {/* Pricing Grid */}
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10"> {/* Changed max-w-7xl to max-w-4xl for 2 items layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           
-          {categories.map((cat, index) => (
-            <div 
-              key={index} 
-              className={`relative bg-slate-800 rounded-2xl p-6 border transition-all duration-300 hover:-translate-y-1 flex flex-col h-full group
-                ${cat.isPopular 
-                  ? 'border-green-500 shadow-2xl shadow-green-900/20 z-10' 
-                  : 'border-slate-700 hover:border-green-500/50 hover:shadow-xl'
-                }
-              `}
-            >
-              {/* Badge Popular */}
-              {cat.isPopular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-500 text-slate-900 text-[10px] font-bold px-3 py-1 rounded-full shadow-lg tracking-wider">
-                  TERLARIS
-                </div>
-              )}
+          {categories.map((cat) => {
+            const selectedIdx = selections[cat.id] ?? 0;
+            const isOutOfStock = cat.status === 'empty';
+            const isActiveStock = !isOutOfStock;
 
-              {/* Header Card */}
-              <div className="text-center mb-6 border-b border-slate-700 pb-4">
-                <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-green-400 transition-colors">{cat.name}</h3>
-                <p className="text-xs text-slate-400 font-medium uppercase tracking-wide">{cat.description}</p>
-              </div>
-
-              {/* Price List Table */}
-              <div className="space-y-3 mb-8 flex-1">
-                {cat.options.map((opt, idx) => (
-                  <div key={idx} className="flex justify-between items-center p-3 bg-slate-900/50 rounded-lg border border-slate-700/50 hover:border-green-500/30 transition-colors cursor-default">
-                    <span className="text-sm text-slate-300 font-medium">
-                      {opt.duration}
-                    </span>
-                    <span className="text-sm font-bold text-green-500">
-                      {opt.price}
+            return (
+              <div 
+                key={cat.id} 
+                className={`group relative flex flex-col h-full rounded-3xl transition-all duration-300 hover:-translate-y-1
+                  ${cat.isPopular 
+                    ? 'bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border border-[#1DB954]/40 shadow-2xl shadow-green-900/20 z-10 scale-100' 
+                    : 'bg-[#181818]/80 border border-white/5 hover:bg-[#282828] hover:border-white/10 backdrop-blur-sm'
+                  }
+                  ${isOutOfStock ? 'opacity-50 grayscale' : ''}
+                `}
+              >
+                {/* Popular Badge */}
+                {cat.isPopular && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
+                    <span className="flex items-center gap-1 bg-[#1DB954] text-black text-[10px] font-bold px-3 py-1 rounded-full shadow-lg shadow-green-600/40 tracking-wider">
+                      <Star className="w-3 h-3 fill-black" />
+                      TERLARIS
                     </span>
                   </div>
-                ))}
+                )}
+
+                <div className="p-6 md:p-8 flex-1 flex flex-col">
+                  
+                  {/* Header Card */}
+                  <div className="flex justify-between items-start mb-6">
+                      <div className={`p-3 rounded-xl ${cat.isPopular ? 'bg-[#1DB954]/10 text-[#1DB954]' : 'bg-white/5 text-slate-400'}`}>
+                         {cat.id === 'cat_family' ? <Music className="w-6 h-6"/> : <User className="w-6 h-6"/>}
+                      </div>
+                      <StockIndicator status={cat.status} />
+                  </div>
+
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-bold text-white mb-1">{cat.name}</h3>
+                    <p className={`text-sm font-medium mb-3 ${cat.isPopular ? 'text-[#1DB954]' : 'text-slate-500'}`}>
+                        {cat.subName}
+                    </p>
+                    <p className="text-xs text-slate-400 leading-relaxed min-h-[40px]">
+                        {cat.description}
+                    </p>
+                  </div>
+
+                  {/* Features List */}
+                  <ul className="space-y-3 mb-8">
+                    {cat.features.map((feat, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <div className={`mt-0.5 p-0.5 rounded-full ${cat.isPopular ? 'bg-[#1DB954]/20 text-[#1DB954]' : 'bg-slate-800 text-slate-500'}`}>
+                            <Check className="w-3 h-3" strokeWidth={3} />
+                        </div>
+                        <span className="text-xs text-slate-300 font-medium">{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-auto space-y-3">
+                    <div className="flex items-center gap-2 mb-2">
+                        <div className="h-px bg-white/10 flex-1"></div>
+                        <span className="text-[10px] uppercase text-slate-500 font-bold tracking-widest">Pilih Opsi</span>
+                        <div className="h-px bg-white/10 flex-1"></div>
+                    </div>
+
+                    {cat.options.map((opt, idx) => {
+                      const isSelected = selectedIdx === idx;
+                      return (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => isActiveStock && handleSelect(cat.id, idx)}
+                          disabled={isOutOfStock}
+                          className={`group/opt w-full flex items-center justify-between px-4 py-3.5 rounded-xl text-sm border transition-all duration-200 relative overflow-hidden
+                            ${isSelected 
+                               ? (cat.isPopular 
+                                    ? 'bg-[#1DB954]/10 border-[#1DB954]/50 text-white shadow-[0_0_15px_rgba(29,185,84,0.1)]' 
+                                    : 'bg-white/10 border-white/30 text-white')
+                               : 'bg-transparent border-white/5 text-slate-400 hover:border-white/10 hover:bg-white/5'
+                            }
+                            ${isOutOfStock ? 'cursor-not-allowed' : 'cursor-pointer'}
+                          `}
+                        >
+                          {/* Selection Indicator Dot */}
+                          <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 h-10 rounded-r-full transition-all
+                              ${isSelected ? (cat.isPopular ? 'bg-[#1DB954]' : 'bg-slate-200') : 'bg-transparent'}
+                          `}></div>
+
+                          <div className="flex flex-col items-start ml-2">
+                             <span className={`font-medium ${isSelected ? 'text-white' : 'text-slate-400 group-hover/opt:text-slate-300'}`}>
+                                {opt.duration}
+                             </span>
+                          </div>
+                          
+                          <div className="flex flex-col items-end">
+                            {opt.bestValue && isActiveStock && (
+                                <span className="text-[9px] font-bold text-green-400 mb-0.5">BEST DEAL</span>
+                            )}
+                            <span className={`font-bold ${isSelected ? 'text-white' : 'text-slate-500 group-hover/opt:text-slate-400'}`}>
+                                {opt.price}
+                            </span>
+                          </div>
+                        </button>
+                      )
+                    })}
+                  </div>
+
+                  {/* CTA Button */}
+                  <div className="mt-6">
+                      <Link 
+                        href={isOutOfStock ? '#' : getWhatsappLink(cat, selectedIdx)}
+                        target={isOutOfStock ? '_self' : '_blank'}
+                        className={`block w-full ${isOutOfStock ? 'pointer-events-none' : ''}`}
+                      >
+                        <div className={`w-full py-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg
+                          ${isOutOfStock 
+                            ? 'bg-slate-800 text-slate-500 border border-slate-700 cursor-not-allowed' 
+                            : 'bg-[#1DB954] text-black hover:bg-[#1ed760] hover:shadow-green-600/20 active:scale-[0.98]'
+                          }
+                        `}>
+                          {isOutOfStock ? 'Stok Habis' : 'Order via WhatsApp'}
+                          {isActiveStock && <ChevronRight className="w-4 h-4" />}
+                        </div>
+                      </Link>
+                  </div>
+
+                </div>
               </div>
-
-              {/* Button Action */}
-              <Link href="#" className="mt-auto">
-                <button className={`w-full py-3 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2
-                  ${cat.isPopular 
-                    ? 'bg-green-500 hover:bg-green-400 text-slate-900 shadow-lg shadow-green-900/30' 
-                    : 'bg-slate-700 hover:bg-slate-600 text-white border border-slate-600'
-                  }
-                `}>
-                  Pesan Sekarang
-                </button>
-              </Link>
-
-            </div>
-          ))}
-
+            );
+          })}
         </div>
-      </div>
 
-      {/* Footer Note */}
-      <div className="text-center mt-16 text-slate-500 text-xs px-6">
-        <p>Proses 1-5 Menit. Garansi Full sesuai durasi paket.</p>
-      </div>
+        <div className="mt-20 text-center text-slate-600 text-xs sm:text-sm">
+            <p>&copy; 2025 Octacore. All rights reserved.</p>
+        </div>
 
+      </div>
     </div>
   );
 }
