@@ -18,8 +18,9 @@ interface ServiceItem {
   title: string;
   icon: LucideIcon;
   label: string;
-  color: 'blue' | 'green' | 'red' | 'purple';
+  color: 'blue' | 'green' | 'red' | 'purple' | 'gray'; // Tambah warna gray
   href: string;
+  available: boolean; // Properti baru untuk status ketersediaan
 }
 
 interface BannerItem {
@@ -30,7 +31,6 @@ interface BannerItem {
   buttonText: string;
 }
 
-// Update Interface: Menambahkan slug, price opsional (tidak ditampilkan)
 interface PremiumService {
   id: number;
   name: string;
@@ -39,7 +39,7 @@ interface PremiumService {
   icon: string;
   logo?: string;
   inStock: boolean;
-  slug: string; // Properti baru untuk link
+  slug: string; 
 }
 
 // --- DATA BANNER CAROUSEL ---
@@ -67,15 +67,47 @@ const BANNER_ITEMS: BannerItem[] = [
   },
 ];
 
-// --- DATA LAYANAN ---
+// --- DATA LAYANAN (UPDATED) ---
 const FEATURED_SERVICES: ServiceItem[] = [
-  { id: 1, title: 'Service Laptop', icon: Wrench, label: 'BERGARANSI', color: 'blue', href: '/serviceLaptop' },
-  { id: 2, title: 'Edit Video & Foto', icon: Video, label: 'UNLIMITED REVISI', color: 'green', href: '/services/editing' },
-  { id: 3, title: 'Bikin Website', icon: Code, label: 'FREE HOSTING', color: 'purple', href: '/services/website' },
-  { id: 4, title: 'Joki Tugas', icon: Edit3, label: 'KILAT', color: 'red', href: '/services/joki' },
+  { 
+    id: 1, 
+    title: 'Service Laptop', 
+    icon: Wrench, 
+    label: 'BERGARANSI', 
+    color: 'blue', 
+    href: '/serviceLaptop',
+    available: true 
+  },
+  { 
+    id: 2, 
+    title: 'Edit Video & Foto', 
+    icon: Video, 
+    label: 'TIDAK TERSEDIA', // Label diupdate
+    color: 'gray', // Warna jadi gray
+    href: '#', // Link dimatikan
+    available: false // Status unavailable
+  },
+  { 
+    id: 3, 
+    title: 'Bikin Website', 
+    icon: Code, 
+    label: 'TIDAK TERSEDIA', 
+    color: 'gray', 
+    href: '#', 
+    available: false 
+  },
+  { 
+    id: 4, 
+    title: 'Joki Tugas', 
+    icon: Edit3, 
+    label: 'TIDAK TERSEDIA', 
+    color: 'gray', 
+    href: '#', 
+    available: false 
+  },
 ];
 
-// --- DATA PREMIUM (Updated dengan slug) ---
+// --- DATA PREMIUM ---
 const PREMIUM_SERVICES: PremiumService[] = [
   { id: 1, name: 'Netflix 4K', price: 'Rp 35rb', period: '/bln', icon: '🎬', logo: '/netflix.png', inStock: true, slug: 'netflix-4k' },
   { id: 2, name: 'Spotify Ind', price: 'Rp 20rb', period: '/bln', icon: '🎵', logo: '/spotify.png', inStock: true, slug: 'spotify' },
@@ -166,39 +198,48 @@ const BannerCarousel: React.FC = () => {
   );
 };
 
-const ServiceCard: React.FC<ServiceItem> = ({ title, icon: Icon, label, color, href }) => {
+// --- MODIFIED SERVICE CARD (Handle logic available) ---
+const ServiceCard: React.FC<ServiceItem> = ({ title, icon: Icon, label, color, href, available }) => {
   const styles = {
     blue:   'bg-blue-500/10 text-blue-400 border-blue-500/20 group-hover:border-blue-400/50',
     green:  'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 group-hover:border-emerald-400/50',
     red:    'bg-rose-500/10 text-rose-400 border-rose-500/20 group-hover:border-rose-400/50',
     purple: 'bg-purple-500/10 text-purple-400 border-purple-500/20 group-hover:border-purple-400/50',
+    gray:   'bg-slate-700/20 text-slate-500 border-slate-700/30', // Style khusus disabled
   }[color];
 
+  // Jika available, gunakan Link. Jika tidak, gunakan div agar tidak bisa diklik.
+  const Component = available ? Link : 'div' as React.ElementType;
+  const wrapperProps = available ? { href } : {};
+
   return (
-    <Link href={href} className="group block h-full w-full">
-      <div className={`relative h-full flex flex-row sm:flex-col items-center sm:items-start p-4 rounded-2xl border border-slate-800 bg-slate-900/50 hover:bg-slate-800/80 transition-all duration-300 active:scale-[0.98]`}>
+    <Component {...wrapperProps} className={`group block h-full w-full ${!available ? 'cursor-not-allowed' : ''}`}>
+      <div className={`relative h-full flex flex-row sm:flex-col items-center sm:items-start p-4 rounded-2xl border border-slate-800 bg-slate-900/50 transition-all duration-300 ${available ? 'hover:bg-slate-800/80 active:scale-[0.98]' : 'opacity-60 grayscale'}`}>
+        
         <div className={`p-3 rounded-xl mr-4 sm:mr-0 sm:mb-4 ${styles}`}>
           <Icon className="w-6 h-6 sm:w-8 sm:h-8" />
         </div>
+        
         <div className="flex-1">
           <div className="flex justify-between items-center mb-1">
-             <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-slate-800 text-slate-400 uppercase tracking-wide border border-slate-700/50">
+             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wide border ${available ? 'bg-slate-800 text-slate-400 border-slate-700/50' : 'bg-red-500/10 text-red-400 border-red-500/20'}`}>
                {label}
              </span>
-             <ChevronRight className="w-4 h-4 text-slate-600 sm:hidden" />
+             {available && <ChevronRight className="w-4 h-4 text-slate-600 sm:hidden" />}
           </div>
-          <h3 className="text-base sm:text-lg font-bold text-slate-100 group-hover:text-purple-400 transition-colors">
+          <h3 className={`text-base sm:text-lg font-bold ${available ? 'text-slate-100 group-hover:text-purple-400' : 'text-slate-400'} transition-colors`}>
             {title}
           </h3>
-          <p className="text-xs text-slate-500 mt-1 hidden sm:block">Klik untuk detail layanan</p>
+          <p className="text-xs text-slate-500 mt-1 hidden sm:block">
+            {available ? 'Klik untuk detail layanan' : 'Layanan sedang penuh/nonaktif'}
+          </p>
         </div>
       </div>
-    </Link>
+    </Component>
   );
 };
 
-// --- MODIFIED PREMIUM CARD ---
-// Harga dihapus, Tombol diganti Link
+// --- PREMIUM CARD ---
 const PremiumCard: React.FC<PremiumService> = ({ name, logo, icon, inStock, slug }) => {
   return (
     <div className={`relative flex flex-col p-4 bg-slate-900 rounded-2xl border border-slate-800 transition-all duration-300 hover:border-slate-600 hover:shadow-xl group`}>
