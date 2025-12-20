@@ -41,8 +41,8 @@ export default function ViuPricingPage() {
       features: ["Akun dari Seller", "Private Account", "Akses Konten Premium", "Download Offline"],
       options: [
         { duration: "1 Bulan", price: "Rp 7.000" }, //
-        { duration: "6 Bulan", price: "Rp 25.000" }, //
-        { duration: "1 Tahun", price: "Rp 30.000", bestValue: true }, //
+        { duration: "6 Bulan", price: "Rp 21.000" }, //
+        { duration: "1 Tahun", price: "Rp 28.000", bestValue: true }, //
       ]
     },
     {
@@ -55,8 +55,8 @@ export default function ViuPricingPage() {
       features: ["Garansi Full Durasi", "Akun dari Seller", "Anti Hold/Limit", "Support All Devices"],
       options: [
         { duration: "1 Bulan", price: "Rp 14.000" }, //
-        { duration: "6 Bulan", price: "Rp 30.000" }, //
-        { duration: "1 Tahun", price: "Rp 40.000", bestValue: true }, //
+        { duration: "6 Bulan", price: "Rp 28.000" }, //
+        { duration: "1 Tahun", price: "Rp 35.000", bestValue: true }, //
       ]
     },
     {
