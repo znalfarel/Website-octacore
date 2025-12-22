@@ -96,7 +96,7 @@ export default function Navbar() {
 
   const menuItems = [
     { label: "Beranda", href: "/#home" },
-    { label: "Layanan", href: "/dashboard" },
+    { label: "Layanan", href: "/layanan" },
     { label: "Portofolio", href: "/#portfolio" },
     { label: "Kontak", href: "/#contact" },
   ];
