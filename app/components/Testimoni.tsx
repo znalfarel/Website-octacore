@@ -56,7 +56,7 @@ export default function Testimoni() {
   const testimonials = [
     {
       id: 1,
-      name: "Jakfan Abdur",
+      name: "Rizki Abdul",
       role: "Hacker Sidoarjo",
       image: "/testimonial-1.jpg",
       content: "Layanan website development dari OctaCore sangat profesional. Website saya jadi lebih menarik dan penjualan meningkat 50%!",
@@ -64,7 +64,7 @@ export default function Testimoni() {
     },
     {
       id: 2,
-      name: "Lek Hin",
+      name: "Dr. Sahroni S.Kom., M.Kom.",
       role: "Dosen Teknik Nuklir",
       image: "/testimonial-2.jpg",
       content: "Tim editing video mereka luar biasa cepat dan hasilnya sangat memuaskan. Saya sangat merekomendasikan layanan ini!",
@@ -72,8 +72,8 @@ export default function Testimoni() {
     },
     {
       id: 3,
-      name: "Bulek Kantin",
-      role: "Penjual gacoan",
+      name: "M. Wahyudi",
+      role: "Network Engineer",
       image: "/testimonial-3.jpg",
       content: "Service laptop mereka responsif dan profesional. Laptop saya kembali seperti baru. Terima kasih OctaCore!",
       rating: 5,
