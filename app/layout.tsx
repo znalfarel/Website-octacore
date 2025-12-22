@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Sora, Montserrat, Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/app/components/Navbar";
 
+// Konfigurasi Font
 const sora = Sora({
   subsets: ["latin"],
   variable: "--font-sora",
@@ -21,10 +22,67 @@ const montserrat = Montserrat({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
 });
 
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#2e1065", 
+};
+
+// 2. Metadata SEO Lengkap
 export const metadata: Metadata = {
-  title: "OctaCore",
-  description: "Layanan Jasa",
-  icons: "/octacore.svg",
+  // GANTI URL INI dengan domain asli Anda saat deploy (misal: https://octacore.id)
+  metadataBase: new URL('https://octacore.web.id'), 
+
+  title: {
+    default: "OctaCore | Jasa Service Laptop, Pembuatan Website & Video Editing",
+    template: "%s | OctaCore Solutions", // Ini template otomatis untuk halaman lain
+  },
+  
+  description: "Solusi digital terlengkap: Jasa service laptop, pembuatan website profesional, editing video kreatif, dan penjualan aplikasi premium terpercaya.",
+  
+  keywords: [
+    "Service Laptop Sidoarjo", 
+    "Service Laptop", 
+    "Service Laptop Murah",
+    "Service Laptop Candi", 
+    "Service Laptop Terdekat", 
+    "Service Laptop Umsida", 
+    "Perbaikan Komputer",
+    "Jasa Pembuatan Website", 
+    "Web Developer Next.js", 
+    "Jasa Video Editing", 
+    "Jual Aplikasi Premium",
+    "OctaCore"
+  ],
+
+  authors: [{ name: "OctaCore Team" }],
+
+  icons: {
+    icon: "/octacore.svg",
+  },
+
+  // Tampilan saat link dishare di WhatsApp/Sosmed
+  openGraph: {
+    title: "OctaCore - Solusi Digital & IT Service",
+    description: "Melayani service laptop, bikin website, edit video, dan aplikasi premium.",
+    siteName: "OctaCore",
+    locale: "id_ID",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.jpg", // Pastikan buat gambar 1200x630px di folder public
+        width: 1200,
+        height: 630,
+        alt: "OctaCore Services",
+      },
+    ],
+  },
+  
+  robots: {
+    index: true,
+    follow: true,
+  }
 };
 
 export default function RootLayout({
@@ -33,10 +91,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </head>
+    // Mengubah lang ke 'id' karena target pasar Indonesia
+    <html lang="id">
+      {/* HAPUS <head> manual. Next.js mengurusnya otomatis via Metadata API di atas */}
       <body
         className={`bg-linear-120 from-purple-950 to-blue-800 ${sora.variable} ${roboto_slab.variable} ${montserrat.className} antialiased`}
       >

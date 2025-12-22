@@ -40,10 +40,10 @@ const bundles = [
   }
 ];
 
-// --- DATA LAYANAN SATUAN ---
+// --- DATA LAYANAN SATUAN (DIOPTIMALKAN UNTUK SEO) ---
 const services = [
   {
-    title: "Upgrade SSD",
+    title: "Upgrade SSD Laptop", // SEO: Tambah kata "Laptop"
     price: "Mulai Rp 400.000",
     desc: "Tingkatkan kecepatan boot dan loading aplikasi hingga 10x lipat.",
     icon: <HardDrive className="w-6 h-6 text-purple-500" />,
@@ -59,7 +59,7 @@ const services = [
     popular: false,
   },
   {
-    title: "Deep Cleaning",
+    title: "Deep Cleaning & Overheat", // SEO: Tambah keyword masalah (Overheat)
     price: "Rp 100.000",
     desc: "Membersihkan debu mikro yang menyumbat sirkulasi udara laptop.",
     icon: <Wind className="w-6 h-6 text-purple-500" />,
@@ -67,7 +67,7 @@ const services = [
     popular: false,
   },
   {
-    title: "Premium Repaste",
+    title: "Ganti Thermal Paste", // SEO: Orang lebih sering cari "Ganti" daripada "Repaste"
     price: "Rp 100.000",
     desc: "Mengganti thermal paste kering dengan thermal paste high-end.",
     icon: <Thermometer className="w-6 h-6 text-purple-500" />,
@@ -79,11 +79,11 @@ const services = [
     price: "Mulai dari Rp 25.000",
     desc: "Aktivasi Windows dan Office aman tanpa virus.",
     icon: <Monitor className="w-6 h-6 text-purple-500" />,
-    features: ["Panel IPS / OLED", "Garansi Layar", "Pengerjaan Cepat"],
+    features: ["Permanen / Lifetime", "Bukan Crack", "Pengerjaan Cepat"], // Update fitur biar lebih menjual
     popular: false,
   },
   {
-    title: "Install ulang",
+    title: "Install Ulang Windows", // SEO: Perjelas "Windows"
     price: "Rp 150.000",
     desc: "Instal ulang Windows/Linux, Office, dan software produktivitas.",
     icon: <Zap className="w-6 h-6 text-purple-500" />,
@@ -150,7 +150,11 @@ Mohon konfirmasi mengenai ketersediaan slot dan jadwal pengerjaan. Terima kasih.
             transition={{ duration: 0.6 }}
           >
             
+            {/* SEO UPDATE: Menambahkan Keyword "Jasa Service Laptop" di H1 */}
             <h1 className="mt-10 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-2 text-2xl md:text-4xl">
+                Jasa Service Laptop
+              </span>
               Rawat Laptopmu <br className="hidden sm:block" /> Tanpa Drama.
             </h1>
 
@@ -204,12 +208,12 @@ Mohon konfirmasi mengenai ketersediaan slot dan jadwal pengerjaan. Terima kasih.
                   <p className="text-slate-400 text-sm mb-4">{bundle.desc}</p>
                   
                   <div className="space-y-2 mb-6">
-                     {bundle.features.map((feat, i) => (
-                       <div key={i} className="flex items-center justify-center md:justify-start gap-2 text-sm text-slate-300">
-                         <CheckCircle2 className="w-4 h-4 text-purple-500 flex-shrink-0" />
-                         <span>{feat}</span>
-                       </div>
-                     ))}
+                      {bundle.features.map((feat, i) => (
+                        <div key={i} className="flex items-center justify-center md:justify-start gap-2 text-sm text-slate-300">
+                          <CheckCircle2 className="w-4 h-4 text-purple-500 flex-shrink-0" />
+                          <span>{feat}</span>
+                        </div>
+                      ))}
                   </div>
 
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-auto">
@@ -332,8 +336,8 @@ Mohon konfirmasi mengenai ketersediaan slot dan jadwal pengerjaan. Terima kasih.
         </motion.div>
         
         {/* Footer */}
-        <div className="text-center mt-12 md:mt-20 text-slate-600 text-xs md:text-sm">
-          &copy; {new Date().getFullYear()} Laptop Service Center. Professional Grade Repair.
+        <div className="mt-20 text-center text-slate-600 text-xs sm:text-sm">
+            <p>© 2025 Octacore Solutions. Service Laptop & IT Solution.</p>
         </div>
 
       </div>
