@@ -108,6 +108,9 @@ export default function RootLayout({
   return (
     // Mengubah lang ke 'id' karena target pasar Indonesia
     <html lang="id">
+      <head>
+        <link rel="apple-touch-icon" href="/octacore.svg" />
+      </head>
       {/* HAPUS <head> manual. Next.js mengurusnya otomatis via Metadata API di atas */}
       <body
         className={`bg-linear-120 from-purple-950 to-blue-800 ${sora.variable} ${roboto_slab.variable} ${montserrat.className} antialiased`}
