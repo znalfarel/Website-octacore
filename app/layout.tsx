@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Sora, Montserrat, Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/app/components/Navbar";
+import Image from "next/image";
 
 // Konfigurasi Font
 const sora = Sora({
@@ -38,6 +39,8 @@ export const metadata: Metadata = {
     default: "OctaCore | Jasa Service Laptop, Pembuatan Website & Video Editing",
     template: "%s | OctaCore Solutions", // Ini template otomatis untuk halaman lain
   },
+
+  icons: "/octacore.svg",
   
   description: "Solusi digital terlengkap: Jasa service laptop, pembuatan website profesional, editing video kreatif, dan penjualan aplikasi premium terpercaya.",
   
@@ -49,18 +52,30 @@ export const metadata: Metadata = {
     "Service Laptop Terdekat", 
     "Service Laptop Umsida", 
     "Perbaikan Komputer",
-    "Jasa Pembuatan Website", 
-    "Web Developer Next.js", 
+    "Jasa Pembuatan Website Terpercaya", 
+    "Jasa Pembuatan Website Murah", 
+    "Jasa Pembuatan Website Sidoarjo", 
+    "Jasa Pembuatan Website Termurah", 
+    "Jasa Pembuatan Website Terpercaya", 
+    "Web Developer Wordpress", 
     "Jasa Video Editing", 
+    "Jasa Editing Video", 
+    "Jasa Editing Video Termurah", 
+    "Jasa Editing Video Terpercaya", 
+    "Jasa Editing Video Amanah", 
     "Jual Aplikasi Premium",
+    "Jual Aplikasi Premium terpercya",
+    "Jual Aplikasi Premium termurah",
+    "App prem",
+    "App prem murah",
+    "App prem terpercaya",
+    "Aplikasi premium",
     "OctaCore"
   ],
 
   authors: [{ name: "OctaCore Team" }],
 
-  icons: {
-    icon: "/octacore.svg",
-  },
+  
 
   // Tampilan saat link dishare di WhatsApp/Sosmed
   openGraph: {

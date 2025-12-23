@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next"
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Jasa Service Laptop & Upgrade SSD Terpercaya",
@@ -12,9 +13,9 @@ export const metadata: Metadata = {
     "ganti baterai laptop"
   ],
   openGraph: {
-    title: "Jasa Service Laptop & Upgrade SSD - OctaCore",
+    title: "Jasa Service Laptop Terpecaya - OctaCore",
     description: "Laptop lemot atau rusak? Service di OctaCore aja. Transparan dan bergaransi.",
-    images: ['/og-service.jpg'], // Pastikan gambar ini ada atau gunakan default
+    images: ['/octacore.svg'],
   },
 };
 
