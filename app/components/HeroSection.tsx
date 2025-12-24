@@ -195,7 +195,7 @@ export default function HeroSection() {
               <ScrollReveal delay={400}>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5 lg:gap-6 pt-2 sm:pt-4 md:pt-6 lg:pt-8">
                     <Link href="/layanan">
-                    <button className="w-full sm:w-auto px-6 sm:px-8 md:px-9 lg:px-10 py-2.5 sm:py-3 md:py-3 lg:py-4 rounded-lg bg-purple-600 text-white font-semibold text-sm sm:text-base md:text-base lg:text-lg hover:shadow-2xl hover:shadow-pink-500/50 transition duration-300 transform hover:scale-105 active:scale-95 sm:active:scale-100">
+                    <button className="w-full sm:w-auto px-6 sm:px-8 md:px-9 lg:px-10 py-2.5 sm:py-3 md:py-3 lg:py-4 rounded-lg bg-purple-600 text-white font-semibold text-sm sm:text-base md:text-base lg:text-lg hover:shadow-2xl hover:shadow-pink-500/50 transition duration-300 transform hover:scale-105 active:scale-95 sm:active:scale-100 cursor-pointer">
                         Mulai Sekarang
                     </button>
                     </Link>

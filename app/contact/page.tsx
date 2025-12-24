@@ -209,7 +209,9 @@ export default function Contact() {
                 <button
                 type="submit"
                 disabled={status === "loading" || status === "success"}
-                className="group w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:to-purple-600 text-white font-bold py-3 sm:py-4 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-[0_4px_20px_-5px_rgba(147,51,234,0.5)] disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 text-sm sm:text-base"
+                className="group w-full bg-linear-to-r from-purple-600 to-violet-600 hover:to-purple-600 text-white font-bold py-3 sm:py-4 px-6 
+                rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-[0_4px_20px_-5px_rgba(147,51,234,0.5)] disabled:opacity-70 
+                disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 text-sm sm:text-base cursor-pointer"
                 >
                 {status === "loading" ? (
                     <>

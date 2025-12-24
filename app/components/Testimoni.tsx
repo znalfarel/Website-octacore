@@ -197,9 +197,9 @@ export default function Testimoni() {
             <div className="flex justify-center items-center gap-4 mt-6 sm:mt-8">
               <button
                 onClick={prevTestimonial}
-                className="p-2 sm:p-3 rounded-lg bg-purple-500/20 border border-purple-500/50 text-purple-400 hover:bg-purple-500/30 hover:border-purple-500/70 transition duration-300 transform hover:scale-110"
+                className="p-2 sm:p-3 rounded-lg bg-purple-500/20 border border-purple-500/50 text-purple-400 hover:bg-purple-500/30 hover:border-purple-500/70 transition duration-300 transform hover:scale-110 cursor-pointer"
               >
-                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 " />
               </button>
 
               {/* Dots */}
@@ -219,7 +219,7 @@ export default function Testimoni() {
 
               <button
                 onClick={nextTestimonial}
-                className="p-2 sm:p-3 rounded-lg bg-purple-500/20 border border-purple-500/50 text-purple-400 hover:bg-purple-500/30 hover:border-purple-500/70 transition duration-300 transform hover:scale-110"
+                className="p-2 sm:p-3 rounded-lg bg-purple-500/20 border border-purple-500/50 text-purple-400 hover:bg-purple-500/30 hover:border-purple-500/70 transition duration-300 transform hover:scale-110 cursor-pointer"
               >
                 <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
