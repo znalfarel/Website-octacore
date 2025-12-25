@@ -2,8 +2,8 @@ import type { Metadata } from "next"
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Jasa Service Laptop & Upgrade SSD Terpercaya",
-  description: "Tempat service laptop terbaik untuk ganti LCD, baterai, keyboard, dan install ulang. Pengerjaan cepat, transparan, dan bergaransi.",
+  title: "Jasa Service Laptop Terpercaya",
+  description: "Tempat service laptop terbaik untuk perawatan laptop anda. Pengerjaan cepat, transparan, dan bergaransi.",
   keywords: [
     "service laptop surabaya", 
     "jasa install ulang", 
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Jasa Service Laptop Terpecaya - OctaCore",
-    description: "Laptop lemot atau rusak? Service di OctaCore aja. Transparan dan bergaransi.",
+    description: "Laptop lemot atau rusak? Service di OctaCore aja. Murah dan bergaransi.",
     images: ['/octacore.svg'],
   },
 };
