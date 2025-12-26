@@ -6,7 +6,10 @@ export const metadata: Metadata = {
   description: "Tempat service laptop terbaik untuk perawatan laptop anda. Pengerjaan cepat, transparan, dan bergaransi.",
   keywords: [
     "service laptop surabaya", 
+    "service laptop sidoarjo", 
     "jasa install ulang", 
+    "jasa install ulang murah", 
+    "jasa install ulang sidoarjo", 
     "upgrade ssd laptop", 
     "ganti thermal paste", 
     "service laptop overheat",
