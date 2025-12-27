@@ -29,7 +29,7 @@ export default function Footer() {
               <span className="font-sora text-2xl font-bold text-white tracking-tight">OCTACORE</span>
             </Link>
             <p className="text-sm leading-relaxed text-gray-400">
-              Mitra teknologi terpercaya Anda. Kami menghadirkan solusi digital inovatif untuk membantu bisnis Anda tumbuh dan berkembang di era modern.
+              Layanan penyedia jasa terpercaya sejak 2025. Kami berkomitmen untuk memberikan solusi tentang teknologi terbaru dan terupdate.
             </p>
             <div className="flex gap-4 pt-2">
               {/* Social Icons */}

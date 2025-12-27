@@ -1,41 +1,32 @@
-"use client"
 import Link from 'next/link'
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center px-6">
-      <div className="max-w-md w-full text-center">
-        {/* Icon SVG */}
-        <svg 
-          className="mx-auto h-24 w-24 text-slate-600 mb-6" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor" 
-          aria-hidden="true"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-950 text-white p-4">
+      <div className="text-center space-y-6 max-w-lg">
+        {/* Angka 404 Besar dengan Gradient */}
+        <h1 className="text-9xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400 animate-pulse">
+          404
+        </h1>
 
-        <h2 className="text-4xl font-bold text-white mb-2">Oops!</h2>
-        <p className="text-xl text-slate-300 font-medium mb-4">Halaman tidak ditemukan</p>
-        <p className="text-slate-500 mb-8 leading-relaxed">
-          Sepertinya Anda tersesat. Tautan yang Anda ikuti mungkin rusak atau halaman telah dihapus.
+        {/* Pesan Utama */}
+        <h2 className="text-3xl font-bold tracking-tight">
+          Halaman tidak ditemukan
+        </h2>
+
+        {/* Deskripsi Tambahan */}
+        <p className="text-slate-400 text-lg">
+          Maaf, halaman yang Anda cari mungkin telah dipindahkan atau tidak tersedia.
         </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+        {/* Tombol Kembali */}
+        <div className="pt-4">
           <Link 
             href="/" 
-            className="px-6 py-3 rounded-lg bg-white text-slate-900 font-semibold hover:bg-slate-200 transition-colors duration-200"
+            className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-slate-900 bg-purple-400 rounded-full hover:bg-purple-300 transition-all duration-200 transform hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.5)]"
           >
-            Beranda
+            Kembali ke Beranda
           </Link>
-          {/* Tombol sekunder opsional */}
-          <button 
-            onClick={() => window.history.back()}
-            className="px-6 py-3 rounded-lg border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors duration-200"
-          >
-            Kembali Sebelumnya
-          </button>
         </div>
       </div>
     </div>
