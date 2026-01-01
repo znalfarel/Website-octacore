@@ -18,9 +18,9 @@ interface ServiceItem {
   title: string;
   icon: LucideIcon;
   label: string;
-  color: 'blue' | 'green' | 'red' | 'purple' | 'gray'; // Tambah warna gray
+  color: 'blue' | 'green' | 'red' | 'purple' | 'gray';
   href: string;
-  available: boolean; // Properti baru untuk status ketersediaan
+  available: boolean;
 }
 
 interface BannerItem {
@@ -67,7 +67,7 @@ const BANNER_ITEMS: BannerItem[] = [
   },
 ];
 
-// --- DATA LAYANAN (UPDATED) ---
+// --- DATA LAYANAN ---
 const FEATURED_SERVICES: ServiceItem[] = [
   { 
     id: 1, 
@@ -82,10 +82,10 @@ const FEATURED_SERVICES: ServiceItem[] = [
     id: 2, 
     title: 'Edit Video & Foto', 
     icon: Video, 
-    label: 'TIDAK TERSEDIA', // Label diupdate
-    color: 'gray', // Warna jadi gray
-    href: '#', // Link dimatikan
-    available: false // Status unavailable
+    label: 'TIDAK TERSEDIA', 
+    color: 'gray', 
+    href: '#', 
+    available: false 
   },
   { 
     id: 3, 
@@ -108,6 +108,7 @@ const FEATURED_SERVICES: ServiceItem[] = [
 ];
 
 // --- DATA PREMIUM ---
+// Tips: Ubah inStock ke 'false' jika ingin mengetes tampilan habis/tidak bisa diklik
 const PREMIUM_SERVICES: PremiumService[] = [
   { id: 1, name: 'Netflix 4K', price: 'Rp 35rb', period: '/bln', icon: '🎬', logo: '/netflix.png', inStock: false, slug: 'netflix-4k' },
   { id: 2, name: 'Spotify Ind', price: 'Rp 20rb', period: '/bln', icon: '🎵', logo: '/spotify.png', inStock: true, slug: 'spotify' },
@@ -119,7 +120,7 @@ const PREMIUM_SERVICES: PremiumService[] = [
   { id: 8, name: 'iQIYI VIP', price: 'Rp 15rb', period: '/bln', icon: '🎞️', logo: '/iqiyi.webp', inStock: true, slug: 'iqiyi' },
 ];
 
-// --- COMPONENTS ---
+// --- COMPONENTS HELPER ---
 
 const SectionHeader: React.FC<{ title: string; subtitle: string }> = ({ title, subtitle }) => (
   <div className="mb-6 sm:mb-8 px-1">
@@ -139,7 +140,7 @@ const BannerCarousel: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % BANNER_ITEMS.length);
-        }, 5000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -198,17 +199,15 @@ const BannerCarousel: React.FC = () => {
   );
 };
 
-// --- MODIFIED SERVICE CARD (Handle logic available) ---
 const ServiceCard: React.FC<ServiceItem> = ({ title, icon: Icon, label, color, href, available }) => {
   const styles = {
     blue:   'bg-blue-500/10 text-blue-400 border-blue-500/20 group-hover:border-blue-400/50',
     green:  'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 group-hover:border-emerald-400/50',
     red:    'bg-rose-500/10 text-rose-400 border-rose-500/20 group-hover:border-rose-400/50',
     purple: 'bg-purple-500/10 text-purple-400 border-purple-500/20 group-hover:border-purple-400/50',
-    gray:   'bg-slate-700/20 text-slate-500 border-slate-700/30', // Style khusus disabled
+    gray:   'bg-slate-700/20 text-slate-500 border-slate-700/30', 
   }[color];
 
-  // Jika available, gunakan Link. Jika tidak, gunakan div agar tidak bisa diklik.
   const Component = available ? Link : 'div' as React.ElementType;
   const wrapperProps = available ? { href } : {};
 
@@ -239,17 +238,24 @@ const ServiceCard: React.FC<ServiceItem> = ({ title, icon: Icon, label, color, h
   );
 };
 
-// --- PREMIUM CARD ---
+// --- PREMIUM CARD (UPDATED LOGIC) ---
 const PremiumCard: React.FC<PremiumService> = ({ name, logo, icon, inStock, slug }) => {
   return (
-    <div className={`relative flex flex-col p-4 bg-slate-900 rounded-2xl border border-slate-800 transition-all duration-300 hover:border-slate-600 hover:shadow-xl group`}>
+    <div className={`relative flex flex-col p-4 bg-slate-900 rounded-2xl border transition-all duration-300 group
+      ${inStock 
+        ? 'border-slate-800 hover:border-slate-600 hover:shadow-xl' 
+        : 'border-slate-800/50 opacity-75' // Visual redup jika habis
+      }`}
+    >
       
       {/* Header: Logo & Status */}
       <div className="flex justify-between items-start mb-3">
-        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-slate-800 flex items-center justify-center overflow-hidden border border-slate-700 group-hover:border-purple-500/50 transition-colors">
+        <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-slate-800 flex items-center justify-center overflow-hidden border transition-colors
+          ${inStock ? 'border-slate-700 group-hover:border-purple-500/50' : 'border-slate-800 grayscale'}`}
+        >
           {logo ? (
             <div className="relative w-full h-full">
-                <Image src={logo} alt={name} fill className="object-cover" />
+              <Image src={logo} alt={name} fill className="object-cover" />
             </div>
           ) : (
             <span className="text-xl">{icon}</span>
@@ -263,31 +269,47 @@ const PremiumCard: React.FC<PremiumService> = ({ name, logo, icon, inStock, slug
                 <span className="text-[10px] font-bold text-green-400">READY</span>
              </div>
         ) : (
-            <div className="flex items-center gap-1 bg-red-500/10 px-2 py-1 rounded-full border border-red-500/20">
-                <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                <span className="text-[10px] font-bold text-red-400 tracking-wider">HABIS</span>
+            // Badge untuk status habis (abu-abu/slate)
+            <div className="flex items-center gap-1 bg-slate-700/30 px-2 py-1 rounded-full border border-slate-700/50">
+                <div className="w-1.5 h-1.5 rounded-full bg-slate-500" />
+                <span className="text-[10px] font-bold text-slate-500 tracking-wider">HABIS</span>
             </div>
         )}
       </div>
 
       {/* Content: Nama App & Teaser */}
       <div className="flex-1 mb-4">
-        <h3 className="text-sm sm:text-base font-bold text-slate-100 line-clamp-1 group-hover:text-purple-400 transition-colors">
+        <h3 className={`text-sm sm:text-base font-bold line-clamp-1 transition-colors 
+          ${inStock ? 'text-slate-100 group-hover:text-purple-400' : 'text-slate-500'}`}
+        >
             {name}
         </h3>
         <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
-          Cek detail paket, varian durasi, dan promo terbaru disini.
+          {inStock 
+            ? 'Cek detail paket, varian durasi, dan promo terbaru disini.'
+            : 'Mohon maaf, stok layanan ini sedang kosong sementara waktu.'}
         </p>
       </div>
 
-      {/* Button Action: Link ke Halaman Detail */}
-      <Link 
-        href={`/product/${slug}`} 
-        className="w-full py-2.5 rounded-lg text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all active:scale-95 bg-slate-800 text-slate-300 hover:bg-purple-600 hover:text-white hover:shadow-lg hover:shadow-purple-500/20 border border-slate-700 hover:border-purple-500"
-      >
-        Selengkapnya
-        <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
-      </Link>
+      {/* Button Action: Logic Klik */}
+      {inStock ? (
+        // JIKA READY: Render Link normal
+        <Link 
+          href={`/product/${slug}`} 
+          className="w-full py-2.5 rounded-lg text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all active:scale-95 bg-slate-800 text-slate-300 hover:bg-purple-600 hover:text-white hover:shadow-lg hover:shadow-purple-500/20 border border-slate-700 hover:border-purple-500"
+        >
+          Selengkapnya
+          <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
+        </Link>
+      ) : (
+        // JIKA HABIS: Render Button disabled (Tidak bisa diklik)
+        <button 
+          disabled
+          className="w-full py-2.5 rounded-lg text-xs sm:text-sm font-bold flex items-center justify-center gap-2 bg-slate-800/50 text-slate-600 border border-slate-800 cursor-not-allowed"
+        >
+          Stok Habis
+        </button>
+      )}
 
     </div>
   );
