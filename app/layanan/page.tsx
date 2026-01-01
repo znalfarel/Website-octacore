@@ -109,7 +109,7 @@ const FEATURED_SERVICES: ServiceItem[] = [
 
 // --- DATA PREMIUM ---
 const PREMIUM_SERVICES: PremiumService[] = [
-  { id: 1, name: 'Netflix 4K', price: 'Rp 35rb', period: '/bln', icon: '🎬', logo: '/netflix.png', inStock: true, slug: 'netflix-4k' },
+  { id: 1, name: 'Netflix 4K', price: 'Rp 35rb', period: '/bln', icon: '🎬', logo: '/netflix.png', inStock: false, slug: 'netflix-4k' },
   { id: 2, name: 'Spotify Ind', price: 'Rp 20rb', period: '/bln', icon: '🎵', logo: '/spotify.png', inStock: true, slug: 'spotify' },
   { id: 3, name: 'Canva Pro', price: 'Rp 15rb', period: '/bln', icon: '🎨', logo: '/canva.webp', inStock: true, slug: 'canva' },
   { id: 4, name: 'HBO Go', price: 'Rp 25rb', period: '/bln', icon: '📺', logo: '/hbo.png', inStock: true, slug: 'hbo' },
